@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GrafterUK – Marketing for Trades Businesses</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --yellow: #F5C800;
+      --dark: #111111;
+      --mid: #1A1A1A;
+      --grey: #252525;
+      --light: #F4F1EC;
+      --muted: #777;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Barlow', sans-serif; background: var(--dark); color: var(--light); overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 2rem;
+      background: rgba(17,17,17,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #222;
+    }
+    .logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.7rem; color: var(--light); text-transform: uppercase; }
+    .logo span { color: var(--yellow); }
+    .nav-cta {
+      background: var(--yellow); color: var(--dark);
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 0.95rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.65rem 1.5rem; border-radius: 4px; text-decoration: none; transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 9rem 2rem 5rem; position: relative; overflow: hidden;
+    }
+    .hero::after {
+      content: 'GRAFTER';
+      position: absolute; right: -2rem; top: 50%; transform: translateY(-50%);
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+      font-size: clamp(8rem, 20vw, 18rem);
+      color: rgba(255,255,255,0.02); letter-spacing: -5px; text-transform: uppercase;
+      pointer-events: none; white-space: nowrap;
+    }
+    .hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--grey); border: 1px solid #333; color: var(--yellow);
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.8rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.45rem 1rem; border-radius: 3px; margin-bottom: 1.8rem;
+      animation: fadeUp 0.5s ease both;
+    }
+    .hero-tag::before { content: ''; width: 7px; height: 7px; background: var(--yellow); border-radius: 50%; }
+    h1 {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+      font-size: clamp(3.2rem, 9vw, 6.5rem); line-height: 0.93;
+      letter-spacing: -1.5px; text-transform: uppercase; margin-bottom: 1.8rem;
+      animation: fadeUp 0.5s ease 0.1s both;
+    }
+    h1 .accent { color: var(--yellow); display: block; }
+    .hero-sub { font-size: 1.1rem; line-height: 1.75; color: #999; max-width: 500px; margin-bottom: 2.5rem; animation: fadeUp 0.5s ease 0.2s both; }
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 4rem; animation: fadeUp 0.5s ease 0.3s both; }
+    .btn-main {
+      background: var(--yellow); color: var(--dark);
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.05rem;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 1rem 2.2rem; border-radius: 4px; text-decoration: none;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    .btn-main:hover { transform: translateY(-2px); opacity: 0.9; }
+    .btn-ghost {
+      background: transparent; color: var(--light);
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.05rem;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 1rem 2.2rem; border-radius: 4px; border: 1px solid #333; text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--yellow); color: var(--yellow); }
+    .stats-row { display: flex; gap: 3rem; padding-top: 3rem; border-top: 1px solid #222; flex-wrap: wrap; animation: fadeUp 0.5s ease 0.4s both; }
+    .stat-item h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.4rem; color: var(--yellow); line-height: 1; }
+    .stat-item p { font-size: 0.85rem; color: var(--muted); margin-top: 0.3rem; }
+
+    /* TICKER */
+    .ticker { background: var(--yellow); padding: 0.9rem 0; overflow: hidden; white-space: nowrap; }
+    .ticker-track { display: inline-flex; animation: ticker 22s linear infinite; }
+    .ticker-track span { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--dark); padding: 0 1.5rem; }
+    .ticker-track span::after { content: ' ✦ '; opacity: 0.35; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* SHARED */
+    section { padding: 6rem 2rem; }
+    .inner { max-width: 1100px; margin: 0 auto; }
+    .label { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--yellow); display: block; margin-bottom: 0.8rem; }
+    .sec-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(2.2rem, 5vw, 3.8rem); text-transform: uppercase; line-height: 0.95; letter-spacing: -0.5px; margin-bottom: 1.2rem; }
+    .sec-sub { font-size: 1rem; color: #888; max-width: 520px; line-height: 1.7; margin-bottom: 3.5rem; }
+
+    /* SERVICES */
+    #services { background: var(--mid); }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.2rem; }
+    .svc-card { background: var(--dark); border: 1px solid #252525; border-radius: 8px; padding: 1.8rem; transition: border-color 0.25s, transform 0.25s; }
+    .svc-card:hover { border-color: var(--yellow); transform: translateY(-4px); }
+    .svc-icon { font-size: 1.8rem; margin-bottom: 1rem; display: block; }
+    .svc-card h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--light); margin-bottom: 0.6rem; }
+    .svc-card p { font-size: 0.88rem; color: #777; line-height: 1.65; }
+
+    /* HOW */
+    #how { background: var(--dark); }
+    .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2.5rem; }
+    .how-step { border-left: 3px solid var(--yellow); padding-left: 1.5rem; }
+    .how-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 3.5rem; color: #252525; line-height: 1; margin-bottom: 0.3rem; }
+    .how-step h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.15rem; text-transform: uppercase; color: var(--light); margin-bottom: 0.5rem; }
+    .how-step p { font-size: 0.88rem; color: #777; line-height: 1.65; }
+
+    /* WHO */
+    #who { background: var(--mid); }
+    .trades-wrap { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.5rem; }
+    .trade-tag { background: var(--grey); border: 1px solid #2e2e2e; border-radius: 100px; padding: 0.55rem 1.3rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.05em; color: #bbb; transition: all 0.2s; }
+    .trade-tag:hover { background: var(--yellow); color: var(--dark); border-color: var(--yellow); }
+
+    /* HONEST */
+    .honest-section { background: var(--yellow); padding: 6rem 2rem; }
+    .honest-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .honest-inner h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(2.2rem, 5vw, 3.5rem); text-transform: uppercase; line-height: 0.95; color: var(--dark); }
+    .honest-inner h2 small { display: block; font-size: 1rem; font-weight: 500; text-transform: none; letter-spacing: 0; color: rgba(0,0,0,0.55); margin-top: 1rem; line-height: 1.6; font-family: 'Barlow', sans-serif; }
+    .honest-points { display: flex; flex-direction: column; gap: 1.1rem; }
+    .hpoint { display: flex; gap: 0.9rem; align-items: flex-start; }
+    .hpoint .tick { width: 22px; height: 22px; background: var(--dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.65rem; color: var(--yellow); margin-top: 2px; }
+    .hpoint p { font-size: 0.95rem; color: var(--dark); line-height: 1.55; font-weight: 500; }
+
+    /* CONTACT */
+    #contact { background: var(--dark); }
+    .contact-wrap { max-width: 580px; margin: 0 auto; }
+    .contact-card { background: var(--mid); border: 1px solid #222; border-radius: 12px; padding: 2.5rem; margin-top: 2.5rem; }
+    .contact-card p.intro { color: #888; font-size: 0.95rem; line-height: 1.7; margin-bottom: 2rem; }
+    .c-row { display: flex; align-items: center; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid #222; }
+    .c-row:last-child { border-bottom: none; }
+    .c-icon { width: 42px; height: 42px; background: var(--grey); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+    .c-info label { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.2rem; }
+    .c-info a, .c-info span { color: var(--light); font-size: 0.95rem; font-weight: 500; text-decoration: none; transition: color 0.2s; }
+    .c-info a:hover { color: var(--yellow); }
+
+    /* FOOTER */
+    footer { background: #090909; padding: 2rem; text-align: center; border-top: 1px solid #1a1a1a; }
+    footer p { color: #333; font-size: 0.82rem; }
+    footer p span { color: var(--yellow); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 700px) {
+      .honest-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .stats-row { gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Grafter<span>UK</span></div>
+  <a href="#contact" class="nav-cta">Get in Touch</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">UK Trades Marketing</div>
+    <h1>More Jobs.<br><span class="accent">Less Hassle.</span></h1>
+    <p class="hero-sub">You're brilliant at your trade. We make sure local customers can actually find you — with proper social media, Google presence, and content that brings in real work.</p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-main">Get a Free Chat</a>
+      <a href="#services" class="btn-ghost">See What We Do</a>
+    </div>
+    <div class="stats-row">
+      <div class="stat-item">
+        <h3>79%</h3>
+        <p>of UK tradespeople don't<br>market themselves effectively</p>
+      </div>
+      <div class="stat-item">
+        <h3>90%</h3>
+        <p>of customers search<br>online before hiring</p>
+      </div>
+      <div class="stat-item">
+        <h3>£0</h3>
+        <p>cost for your<br>first month</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Social Media</span><span>Google Business</span><span>Website Creation</span><span>Content Writing</span><span>More Leads</span><span>Local SEO</span><span>Real Results</span><span>Social Media</span><span>Google Business</span><span>Website Creation</span><span>Content Writing</span><span>More Leads</span><span>Local SEO</span><span>Real Results</span>
+  </div>
+</div>
+
+<section id="services">
+  <div class="inner">
+    <span class="label">What We Do</span>
+    <h2 class="sec-title">Everything you need<br>to get found online</h2>
+    <p class="sec-sub">No jargon. No nonsense. Just straightforward marketing that gets your phone ringing with the right kind of jobs.</p>
+    <div class="services-grid">
+      <div class="svc-card">
+        <span class="svc-icon">📱</span>
+        <h3>Social Media</h3>
+        <p>We manage your Facebook and Instagram — posting your work, building trust with local homeowners, and keeping you visible between jobs.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-icon">📍</span>
+        <h3>Google Business</h3>
+        <p>Your Google listing is often the first thing customers see. We set it up properly, keep it updated, and help you collect more 5-star reviews.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-icon">🌐</span>
+        <h3>Website Creation</h3>
+        <p>A clean, professional website that tells customers who you are, what you do, and how to book you — without the tech headache.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-icon">✍️</span>
+        <h3>Content & Copy</h3>
+        <p>We write the captions, posts, and descriptions so you don't have to. All you need to do is send us a few photos from your jobs each week.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="inner">
+    <span class="label">How It Works</span>
+    <h2 class="sec-title">Simple as that</h2>
+    <p class="sec-sub">We've kept it dead simple — because you've got enough on your plate already.</p>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-num">01</div>
+        <h3>Free Chat</h3>
+        <p>We have a quick call, look at your current online presence, and work out what's missing. No pressure, no sales pitch.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">02</div>
+        <h3>We Get to Work</h3>
+        <p>We set everything up — your Google listing, social pages, and a content plan built around your trade and your area.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">03</div>
+        <h3>You Send Photos</h3>
+        <p>Each week, WhatsApp us a few photos from jobs. We handle the captions, hashtags, posting — the whole lot.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">04</div>
+        <h3>More Calls Come In</h3>
+        <p>Local homeowners find you online, see your work, trust you — and pick up the phone. That's the whole point.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="who">
+  <div class="inner">
+    <span class="label">Who We Work With</span>
+    <h2 class="sec-title">Built for British trades</h2>
+    <p class="sec-sub">If you're a skilled tradesperson who's brilliant at the job but invisible online — GrafterUK is for you.</p>
+    <div class="trades-wrap">
+      <div class="trade-tag">🚗 Garage Door Installers</div>
+      <div class="trade-tag">🔧 Plumbers</div>
+      <div class="trade-tag">⚡ Electricians</div>
+      <div class="trade-tag">🏗️ Builders</div>
+      <div class="trade-tag">🪟 Window Fitters</div>
+      <div class="trade-tag">🔑 Locksmiths</div>
+      <div class="trade-tag">🌿 Landscapers</div>
+      <div class="trade-tag">🏠 Roofers</div>
+      <div class="trade-tag">🎨 Painters & Decorators</div>
+      <div class="trade-tag">🛁 Bathroom Fitters</div>
+    </div>
+  </div>
+</section>
+
+<div class="honest-section">
+  <div class="honest-inner">
+    <div>
+      <h2>Straight talking.<br>Real results.
+        <small>We're not a big agency with fancy offices. We're a small, focused operation who genuinely care about getting trades businesses more work — and we'll always be honest with you about what's working and what isn't.</small>
+      </h2>
+    </div>
+    <div class="honest-points">
+      <div class="hpoint"><div class="tick">✓</div><p>First month completely free — no contracts, no risk</p></div>
+      <div class="hpoint"><div class="tick">✓</div><p>You only need to send us a few photos a week — we handle everything else</p></div>
+      <div class="hpoint"><div class="tick">✓</div><p>No jargon, no confusing reports — just more enquiries</p></div>
+      <div class="hpoint"><div class="tick">✓</div><p>We only work with trades businesses — so we actually get what you do</p></div>
+      <div class="hpoint"><div class="tick">✓</div><p>Cancel any time — we'd rather earn your trust than lock you in</p></div>
+    </div>
+  </div>
+</div>
+
+<section id="contact">
+  <div class="inner">
+    <div class="contact-wrap">
+      <span class="label">Get in Touch</span>
+      <h2 class="sec-title">Let's have<br>a free chat</h2>
+      <div class="contact-card">
+        <p class="intro">No hard sell. Just a quick conversation about where your business is at and whether we can help. If we can't, we'll tell you honestly.</p>
+        <div class="c-row">
+          <div class="c-icon">📧</div>
+          <div class="c-info">
+            <label>Email</label>
+            <a href="mailto:jordan@grafteruk.co.uk">jordan@grafteruk.co.uk</a>
+          </div>
+        </div>
+        <div class="c-row">
+          <div class="c-icon">🌐</div>
+          <div class="c-info">
+            <label>Website</label>
+            <span>grafteruk.co.uk</span>
+          </div>
+        </div>
+        <div class="c-row">
+          <div class="c-icon">📍</div>
+          <div class="c-info">
+            <label>Serving</label>
+            <span>UK Trades Businesses</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 <span>GrafterUK</span> · Marketing for UK Trades Businesses · grafteruk.co.uk</p>
+</footer>
+
+</body>
+</html>
