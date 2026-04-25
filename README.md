@@ -1,16 +1,22 @@
-## Hi there 👋
+# Hi, I'm Jordan 👋
 
-<!--
-**grafteruk/Grafteruk** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+I build production AI systems for real businesses.
 
-Here are some ideas to get you started:
+🛠 **Currently building:**
+- 🏠 [ukheatpumpgrant.co.uk](https://ukheatpumpgrant.co.uk) — UK lead-gen 
+  for the Boiler Upgrade Scheme. Multi-step quiz, automated lead grading, 
+  Claude-powered scoring (in progress).
+- 📈 Polymarket prediction market trading bots — latency arbitrage and 
+  ML-driven strategies on crypto resolution markets.
+- 🇬🇧 [GrafterUK](https://grafteruk.co.uk) — digital marketing agency 
+  for UK tradespeople.
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+🧰 **Stack:** Python, vanilla JS, Cloudflare Workers, Claude API, MCP
+
+📍 **UK-based, currently shipping from Asia.**
+
+📬 **Reach me:** [LinkedIn](#) · [Twitter](#) · jordan@grafteruk.co.uk
+
+---
+
+*Documenting the journey from indie operator to applied AI engineer.*
