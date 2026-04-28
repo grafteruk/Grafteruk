@@ -1,1450 +1,712 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GrafterUK — More Customers For Local Dairies</title>
-<meta name="description" content="We help local British dairies win back their doorsteps. Marketing and lead generation for independent milk rounds.">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-<style>
-:root {
-  --cream: #faf6ef;
-  --cream-deep: #f1ebdd;
-  --sage: #687e5e;
-  --sage-deep: #4f6348;
-  --sage-light: #a7b89d;
-  --butter: #f2c94c;
-  --butter-soft: #f8e199;
-  --terracotta: #c97b4f;
-  --terracotta-deep: #a5613e;
-  --ink: #1a1813;
-  --ink-soft: #4a4538;
-  --rule: #dcd3bf;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Geist', system-ui, sans-serif;
-  background: var(--cream);
-  color: var(--ink);
-  line-height: 1.6;
-  font-weight: 400;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-
-.serif { font-family: 'Fraunces', Georgia, serif; }
-
-/* ===== NAV ===== */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  padding: 1.25rem 2.5rem;
-  background: var(--cream);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  border-bottom: 1px solid transparent;
-}
-
-nav.scrolled { 
-  border-bottom-color: var(--rule);
-  box-shadow: 0 2px 12px rgba(26, 24, 19, 0.04);
-}
-
-.logomark {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  text-decoration: none;
-  color: var(--ink);
-}
-
-.logo-icon {
-  width: 36px;
-  height: 36px;
-  background: var(--sage);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--cream);
-  font-family: 'Fraunces', serif;
-  font-weight: 600;
-  font-size: 1.1rem;
-  font-style: italic;
-}
-
-.logo-text {
-  font-family: 'Fraunces', serif;
-  font-weight: 600;
-  font-size: 1.35rem;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-}
-
-.nav-cta {
-  font-family: 'Geist', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--cream);
-  background: var(--ink);
-  text-decoration: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 100px;
-  transition: all 0.3s ease;
-}
-
-.nav-cta:hover {
-  background: var(--sage);
-  transform: translateY(-1px);
-}
-
-/* ===== HERO ===== */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  padding: 7rem 2.5rem 4rem;
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 4rem;
-  align-items: center;
-  overflow: hidden;
-}
-
-.hero-text { position: relative; z-index: 2; }
-
-.hero-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.55rem 1.1rem;
-  background: var(--cream-deep);
-  border: 1px solid var(--sage-light);
-  border-radius: 100px;
-  font-family: 'Geist', sans-serif;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--sage-deep);
-  margin-bottom: 2.5rem;
-}
-
-.hero-kicker-dot {
-  width: 7px;
-  height: 7px;
-  background: var(--sage);
-  border-radius: 50%;
-  position: relative;
-}
-
-.hero-kicker-dot::after {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  background: var(--sage);
-  opacity: 0.3;
-  animation: pulseDot 2s ease-in-out infinite;
-}
-
-@keyframes pulseDot {
-  0%, 100% { transform: scale(1); opacity: 0.3; }
-  50% { transform: scale(1.5); opacity: 0; }
-}
-
-.hero h1 {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(3rem, 7vw, 6.5rem);
-  line-height: 1.02;
-  letter-spacing: -0.035em;
-  font-weight: 600;
-  color: var(--ink);
-  margin-bottom: 2rem;
-}
-
-.hero h1 .accent {
-  font-style: italic;
-  font-weight: 500;
-  color: var(--sage-deep);
-  position: relative;
-  display: inline-block;
-}
-
-.hero h1 .accent svg {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -0.15em;
-  width: 100%;
-  height: 0.2em;
-  overflow: visible;
-}
-
-.hero h1 .accent svg path {
-  stroke: var(--butter);
-  stroke-width: 6;
-  fill: none;
-  stroke-linecap: round;
-  stroke-dasharray: 500;
-  stroke-dashoffset: 500;
-  animation: drawLine 1.2s cubic-bezier(0.22, 1, 0.36, 1) 1s forwards;
-}
-
-@keyframes drawLine {
-  to { stroke-dashoffset: 0; }
-}
-
-.hero-sub {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  max-width: 32rem;
-  color: var(--ink-soft);
-  margin-bottom: 3rem;
-  font-weight: 450;
-}
-
-.hero-sub strong {
-  color: var(--ink);
-  font-weight: 500;
-}
-
-.hero-cta-row {
-  display: flex;
-  gap: 1.25rem;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.btn-primary {
-  background: var(--ink);
-  color: var(--cream);
-  font-family: 'Geist', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 500;
-  padding: 1rem 2rem;
-  text-decoration: none;
-  border-radius: 100px;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-primary::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--sage);
-  transform: scale(0);
-  transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1);
-  border-radius: 100px;
-  z-index: 0;
-}
-
-.btn-primary:hover::after { transform: scale(1); }
-.btn-primary > * { position: relative; z-index: 1; }
-
-.btn-primary:hover .arrow { transform: translateX(3px); }
-.arrow { transition: transform 0.3s ease; display: inline-block; }
-
-.btn-text {
-  font-family: 'Geist', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--ink);
-  text-decoration: none;
-  padding: 1rem 1rem;
-  transition: color 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.btn-text:hover { color: var(--sage-deep); }
-
-/* ===== HERO ILLUSTRATION ===== */
-.hero-illus {
-  position: relative;
-  aspect-ratio: 1 / 1.05;
-  max-width: 540px;
-  margin-left: auto;
-  z-index: 1;
-}
-
-.hero-blob {
-  position: absolute;
-  inset: 0;
-  background: var(--sage);
-  border-radius: 58% 42% 55% 45% / 52% 48% 52% 48%;
-  animation: blobMorph 18s ease-in-out infinite;
-  z-index: 0;
-}
-
-@keyframes blobMorph {
-  0%, 100% { border-radius: 58% 42% 55% 45% / 52% 48% 52% 48%; }
-  33% { border-radius: 45% 55% 42% 58% / 48% 52% 48% 52%; }
-  66% { border-radius: 52% 48% 48% 52% / 55% 45% 45% 55%; }
-}
-
-.hero-blob-accent {
-  position: absolute;
-  width: 25%;
-  height: 25%;
-  background: var(--butter);
-  border-radius: 50%;
-  top: 10%;
-  left: -8%;
-  z-index: 0;
-  opacity: 0.9;
-  animation: blobFloat 8s ease-in-out infinite;
-}
-
-.hero-blob-accent-2 {
-  position: absolute;
-  width: 18%;
-  height: 18%;
-  background: var(--terracotta);
-  border-radius: 50%;
-  bottom: 5%;
-  right: 5%;
-  z-index: 0;
-  opacity: 0.85;
-  animation: blobFloat 10s ease-in-out infinite reverse;
-}
-
-@keyframes blobFloat {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(10px, -15px); }
-}
-
-.bottle-wrap {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  animation: bottleBob 4s ease-in-out infinite;
-}
-
-@keyframes bottleBob {
-  0%, 100% { transform: translateY(0) rotate(-1deg); }
-  50% { transform: translateY(-8px) rotate(1deg); }
-}
-
-.bottle-svg {
-  width: 65%;
-  height: auto;
-  filter: drop-shadow(0 25px 30px rgba(35, 32, 25, 0.2));
-}
-
-.float-elem {
-  position: absolute;
-  z-index: 3;
-  pointer-events: none;
-}
-
-.float-elem.wheat {
-  top: 15%;
-  left: 5%;
-  width: 70px;
-  transform: rotate(-20deg);
-  animation: floatRotate 7s ease-in-out infinite;
-}
-
-.float-elem.leaf {
-  bottom: 12%;
-  left: 8%;
-  width: 50px;
-  animation: floatRotate 9s ease-in-out infinite reverse;
-}
-
-.float-elem.sparkle {
-  top: 20%;
-  right: 8%;
-  width: 32px;
-  animation: sparkleSpin 6s linear infinite;
-}
-
-@keyframes floatRotate {
-  0%, 100% { transform: rotate(-20deg) translateY(0); }
-  50% { transform: rotate(-15deg) translateY(-12px); }
-}
-
-@keyframes sparkleSpin {
-  to { transform: rotate(360deg); }
-}
-
-/* ===== RIBBON ===== */
-.ribbon {
-  background: var(--sage);
-  color: var(--cream);
-  padding: 1.25rem 0;
-  overflow: hidden;
-  position: relative;
-}
-
-.ribbon-track {
-  display: flex;
-  gap: 3rem;
-  white-space: nowrap;
-  animation: marquee 38s linear infinite;
-}
-
-@keyframes marquee {
-  to { transform: translateX(-50%); }
-}
-
-.ribbon-item {
-  font-family: 'Fraunces', serif;
-  font-size: 1.3rem;
-  font-weight: 500;
-  font-style: italic;
-  display: inline-flex;
-  align-items: center;
-  gap: 3rem;
-}
-
-.ribbon-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--butter);
-  border-radius: 50%;
-  display: inline-block;
-}
-
-/* ===== SECTION BASE ===== */
-section { position: relative; }
-
-.section-inner {
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 7rem 2.5rem;
-}
-
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-family: 'Geist', sans-serif;
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--sage-deep);
-  margin-bottom: 1.75rem;
-  padding: 0.4rem 0.9rem;
-  background: var(--cream-deep);
-  border-radius: 100px;
-  border: 1px solid var(--rule);
-}
-
-.eyebrow svg {
-  width: 14px;
-  height: 14px;
-  color: var(--sage);
-}
-
-/* ===== PROBLEM ===== */
-.problem {
-  background: var(--cream);
-  position: relative;
-}
-
-.problem-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: 5rem;
-  align-items: start;
-}
-
-.problem h2 {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(2.25rem, 5vw, 4.5rem);
-  line-height: 1.02;
-  letter-spacing: -0.035em;
-  font-weight: 500;
-  color: var(--ink);
-}
-
-.problem h2 .italic {
-  font-style: italic;
-  font-weight: 500;
-  color: var(--sage-deep);
-}
-
-.problem-text p {
-  font-size: 1.1rem;
-  line-height: 1.75;
-  color: var(--ink-soft);
-  margin-bottom: 1.5rem;
-  font-weight: 450;
-}
-
-.problem-text p:last-child { margin-bottom: 0; }
-
-.problem-text strong {
-  color: var(--ink);
-  font-weight: 600;
-}
-
-/* ===== STAT CARDS ===== */
-.stat-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-top: 5rem;
-}
-
-.stat-card {
-  background: var(--cream-deep);
-  border-radius: 24px;
-  padding: 2.5rem;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-}
-
-.stat-card:hover { transform: translateY(-4px); }
-
-.stat-card:nth-child(1) { background: #e8ede1; }
-.stat-card:nth-child(2) { background: #f5e8d0; }
-.stat-card:nth-child(3) { background: #eee1d4; }
-
-.stat-card-icon {
-  width: 48px;
-  height: 48px;
-  background: var(--cream);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-  color: var(--sage-deep);
-}
-
-.stat-number {
-  font-family: 'Fraunces', serif;
-  font-size: 4.5rem;
-  line-height: 1;
-  font-weight: 500;
-  color: var(--ink);
-  letter-spacing: -0.03em;
-  margin-bottom: 0.75rem;
-}
-
-.stat-number sub {
-  font-size: 1.4rem;
-  vertical-align: baseline;
-  color: var(--sage-deep);
-  font-weight: 500;
-  margin-left: 0.1rem;
-}
-
-.stat-desc {
-  font-size: 1rem;
-  line-height: 1.55;
-  color: var(--ink-soft);
-  font-weight: 450;
-}
-
-/* ===== OFFER ===== */
-.offer {
-  background: var(--sage-deep);
-  color: var(--cream);
-  position: relative;
-  overflow: hidden;
-  border-radius: 40px 40px 0 0;
-  margin-top: -20px;
-}
-
-.offer::before {
-  content: '';
-  position: absolute;
-  top: -5%;
-  right: -10%;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(242, 201, 76, 0.15), transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.offer::after {
-  content: '';
-  position: absolute;
-  bottom: -5%;
-  left: -10%;
-  width: 350px;
-  height: 350px;
-  background: radial-gradient(circle, rgba(201, 123, 79, 0.12), transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.offer .eyebrow {
-  background: rgba(250, 246, 239, 0.12);
-  border-color: rgba(250, 246, 239, 0.2);
-  color: var(--cream);
-}
-
-.offer .eyebrow svg { color: var(--butter); }
-
-.offer-header {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 4rem;
-  align-items: end;
-  margin-bottom: 5rem;
-  position: relative;
-  z-index: 2;
-}
-
-.offer h2 {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(2.5rem, 5.5vw, 5rem);
-  line-height: 1;
-  letter-spacing: -0.035em;
-  font-weight: 500;
-}
-
-.offer h2 .italic {
-  font-style: italic;
-  font-weight: 400;
-  color: var(--butter);
-}
-
-.offer-intro {
-  font-size: 1.15rem;
-  line-height: 1.65;
-  color: var(--cream-deep);
-  max-width: 28rem;
-  justify-self: end;
-}
-
-.steps {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  position: relative;
-  z-index: 2;
-}
-
-.step {
-  padding: 2.5rem;
-  background: rgba(250, 246, 239, 0.05);
-  border: 1px solid rgba(250, 246, 239, 0.1);
-  border-radius: 24px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.step:hover {
-  background: rgba(250, 246, 239, 0.08);
-  transform: translateY(-4px);
-  border-color: rgba(242, 201, 76, 0.3);
-}
-
-.step-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 0.9rem;
-  background: rgba(242, 201, 76, 0.15);
-  color: var(--butter);
-  border-radius: 100px;
-  font-family: 'Geist', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 500;
-  margin-bottom: 1.5rem;
-}
-
-.step-badge-num {
-  font-family: 'Fraunces', serif;
-  font-style: italic;
-  font-weight: 600;
-}
-
-.step h3 {
-  font-family: 'Fraunces', serif;
-  font-size: 1.75rem;
-  line-height: 1.15;
-  font-weight: 500;
-  margin-bottom: 1rem;
-  color: var(--cream);
-  letter-spacing: -0.02em;
-}
-
-.step p {
-  font-size: 1rem;
-  line-height: 1.65;
-  color: var(--cream-deep);
-}
-
-/* ===== DENSITY ===== */
-.density {
-  background: var(--cream);
-  padding-top: 2rem;
-}
-
-.density-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
-  align-items: center;
-}
-
-.density h2 {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(2.25rem, 5vw, 4.5rem);
-  line-height: 1.02;
-  letter-spacing: -0.035em;
-  font-weight: 500;
-  color: var(--ink);
-  margin-bottom: 2rem;
-}
-
-.density h2 .italic {
-  font-style: italic;
-  font-weight: 500;
-  color: var(--sage-deep);
-}
-
-.density-text p {
-  font-size: 1.1rem;
-  line-height: 1.75;
-  color: var(--ink-soft);
-  margin-bottom: 1.5rem;
-  font-weight: 450;
-}
-
-.pullquote {
-  font-family: 'Fraunces', serif;
-  font-style: italic;
-  font-size: 1.4rem;
-  line-height: 1.45;
-  color: var(--sage-deep);
-  padding: 2rem 0;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  margin: 2rem 0;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  position: relative;
-}
-
-.route-viz {
-  position: relative;
-  aspect-ratio: 1 / 1;
-  max-width: 500px;
-  margin: 0 auto;
-  background: var(--cream-deep);
-  border-radius: 32px;
-  padding: 3rem;
-  overflow: hidden;
-}
-
-.route-viz::before {
-  content: '';
-  position: absolute;
-  top: -30%;
-  right: -30%;
-  width: 70%;
-  height: 70%;
-  background: var(--butter-soft);
-  border-radius: 50%;
-  opacity: 0.4;
-}
-
-.route-viz-label {
-  position: absolute;
-  top: 1.5rem;
-  left: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: 'Geist', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 500;
-  color: var(--sage-deep);
-  padding: 0.4rem 0.9rem;
-  background: var(--cream);
-  border-radius: 100px;
-  z-index: 2;
-}
-
-.route-viz-legend {
-  position: absolute;
-  bottom: 1.5rem;
-  left: 1.5rem;
-  right: 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  gap: 0.5rem;
-  z-index: 2;
-}
-
-.legend-pill {
-  background: var(--cream);
-  padding: 0.5rem 0.85rem;
-  border-radius: 100px;
-  font-family: 'Geist', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 500;
-  color: var(--ink-soft);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.legend-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-}
-
-.route-viz svg {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-}
-
-/* ===== QUOTE ===== */
-.quote-section {
-  background: var(--butter-soft);
-  padding: 7rem 2.5rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.quote-section::before {
-  content: '';
-  position: absolute;
-  top: -30%;
-  left: -10%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(201, 123, 79, 0.15), transparent 65%);
-  border-radius: 50%;
-}
-
-.quote-inner {
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: center;
-  position: relative;
-  z-index: 2;
-}
-
-.quote-icon {
-  width: 60px;
-  height: 60px;
-  margin: 0 auto 2rem;
-  color: var(--terracotta-deep);
-}
-
-.big-quote {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
-  line-height: 1.3;
-  font-weight: 500;
-  color: var(--ink);
-  letter-spacing: -0.02em;
-  margin-bottom: 2.5rem;
-}
-
-.big-quote .italic {
-  font-style: italic;
-  font-weight: 400;
-  color: var(--terracotta-deep);
-}
-
-.quote-attr {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-family: 'Geist', sans-serif;
-  font-size: 0.95rem;
-  color: var(--ink-soft);
-}
-
-.quote-attr-name { color: var(--ink); font-weight: 500; }
-.quote-attr-sep { opacity: 0.4; }
-
-/* ===== CTA ===== */
-.cta-section {
-  background: var(--ink);
-  color: var(--cream);
-  padding: 8rem 2.5rem;
-  position: relative;
-  overflow: hidden;
-  border-radius: 40px 40px 0 0;
-  margin-top: -20px;
-}
-
-.cta-section::before {
-  content: '';
-  position: absolute;
-  top: -20%;
-  right: -10%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(104, 126, 94, 0.25), transparent 65%);
-  border-radius: 50%;
-}
-
-.cta-section::after {
-  content: '';
-  position: absolute;
-  bottom: -20%;
-  left: -10%;
-  width: 450px;
-  height: 450px;
-  background: radial-gradient(circle, rgba(242, 201, 76, 0.1), transparent 60%);
-  border-radius: 50%;
-}
-
-.cta-inner {
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: center;
-  position: relative;
-  z-index: 2;
-}
-
-.cta-section h2 {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(2.75rem, 6vw, 5.25rem);
-  line-height: 1;
-  letter-spacing: -0.035em;
-  font-weight: 500;
-  color: var(--cream);
-  margin-bottom: 2rem;
-}
-
-.cta-section h2 .italic {
-  font-style: italic;
-  font-weight: 400;
-  color: var(--butter);
-}
-
-.cta-section p {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: var(--cream-deep);
-  max-width: 38rem;
-  margin: 0 auto 3rem;
-}
-
-.cta-actions {
-  display: inline-flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.btn-cream {
-  background: var(--cream);
-  color: var(--ink);
-  font-family: 'Geist', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 500;
-  padding: 1rem 2rem;
-  text-decoration: none;
-  border-radius: 100px;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-cream::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--butter);
-  transform: scale(0);
-  transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1);
-  border-radius: 100px;
-}
-
-.btn-cream:hover::after { transform: scale(1); }
-.btn-cream > * { position: relative; z-index: 1; }
-
-.btn-ghost {
-  background: transparent;
-  color: var(--cream);
-  font-family: 'Geist', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 500;
-  padding: 1rem 2rem;
-  text-decoration: none;
-  border-radius: 100px;
-  border: 1.5px solid rgba(250, 246, 239, 0.3);
-  transition: all 0.3s ease;
-}
-
-.btn-ghost:hover {
-  border-color: var(--cream);
-  background: rgba(250, 246, 239, 0.05);
-}
-
-/* ===== FOOTER ===== */
-footer {
-  background: var(--ink);
-  color: var(--cream-deep);
-  padding: 3rem 2.5rem 2rem;
-  position: relative;
-  z-index: 2;
-}
-
-.footer-inner {
-  max-width: 1300px;
-  margin: 0 auto;
-}
-
-.footer-top {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 4rem;
-  padding-bottom: 2.5rem;
-  border-bottom: 1px solid rgba(250, 246, 239, 0.1);
-}
-
-.footer-brand {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-}
-
-.footer-brand .logo-icon {
-  background: var(--sage);
-}
-
-.footer-brand-text {
-  font-family: 'Fraunces', serif;
-  font-size: 1.75rem;
-  font-weight: 500;
-  color: var(--cream);
-  letter-spacing: -0.02em;
-}
-
-.footer-tag {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  max-width: 26rem;
-  color: var(--cream-deep);
-  opacity: 0.75;
-}
-
-.footer-col h4 {
-  font-family: 'Geist', sans-serif;
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--cream);
-  margin-bottom: 1.25rem;
-}
-
-.footer-col a,
-.footer-col p {
-  display: block;
-  color: var(--cream-deep);
-  text-decoration: none;
-  font-size: 0.92rem;
-  margin-bottom: 0.5rem;
-  transition: color 0.3s ease;
-  opacity: 0.75;
-}
-
-.footer-col a:hover { color: var(--butter); opacity: 1; }
-
-.footer-bottom {
-  padding-top: 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.82rem;
-  color: var(--cream-deep);
-  opacity: 0.5;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 900px) {
-  nav { padding: 0.9rem 1.25rem; }
-  .logo-text { font-size: 1.15rem; }
-  .logo-icon { width: 30px; height: 30px; font-size: 0.9rem; }
-  .nav-cta { padding: 0.6rem 1.1rem; font-size: 0.82rem; }
-  
-  .hero {
-    grid-template-columns: 1fr;
-    padding: 8rem 1.5rem 3rem;
-    gap: 2.5rem;
-    min-height: auto;
-  }
-  .hero-illus { order: -1; max-width: 320px; margin: 0 auto; }
-  .float-elem.wheat { width: 50px; }
-  .float-elem.leaf { width: 36px; }
-  
-  .section-inner { padding: 4.5rem 1.5rem; }
-  .problem-grid, .density-grid, .offer-header { grid-template-columns: 1fr; gap: 2.5rem; }
-  .offer-intro { justify-self: start; }
-  .stat-cards { grid-template-columns: 1fr; gap: 1rem; }
-  .stat-card { padding: 2rem; }
-  .stat-number { font-size: 3.5rem; }
-  .steps { grid-template-columns: 1fr; }
-  
-  .quote-section, .cta-section { padding: 5rem 1.5rem; }
-  .footer-top { grid-template-columns: 1fr; gap: 2rem; }
-  .footer-bottom { flex-direction: column; align-items: flex-start; }
-}
-
-/* ===== ANIMATIONS ===== */
-.fade-up {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-@keyframes fadeUp {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.delay-1 { animation-delay: 0.08s; }
-.delay-2 { animation-delay: 0.2s; }
-.delay-3 { animation-delay: 0.32s; }
-.delay-4 { animation-delay: 0.44s; }
-.delay-5 { animation-delay: 0.56s; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrafterUK — AI growth tools for UK trade businesses</title>
+  <meta name="description" content="GrafterUK builds AI systems that handle quote follow-ups, customer chases, scheduling, and review requests for plumbers, electricians, and every other UK trade. Lead network launching Q3 2026.">
+  <meta property="og:title" content="GrafterUK — AI growth tools for UK trade businesses">
+  <meta property="og:description" content="Stop losing quotes. Less time on admin, more time on the job. AI systems built for UK trades.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://grafteruk.co.uk">
+  <meta name="theme-color" content="#FAFAF7">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ---------- Reset / base ---------- */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body, h1, h2, h3, p, ul, ol, figure { margin: 0; }
+    ul, ol { padding: 0; list-style: none; }
+    button { font: inherit; cursor: pointer; border: none; }
+    a { color: inherit; }
+
+    :root {
+      --bg: #FAFAF7;
+      --bg-alt: #FFF8E5;
+      --text: #1C1C1C;
+      --text-soft: #4a4a4a;
+      --accent: #F5B800;
+      --accent-deep: #d99e00;
+      --rule: rgba(28, 28, 28, 0.08);
+      --container: 1080px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* ---------- Layout primitives ---------- */
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    .section-alt {
+      background: var(--bg-alt);
+    }
+
+    /* ---------- Typography ---------- */
+    h1, h2, h3 {
+      font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+      letter-spacing: -0.015em;
+      line-height: 1.1;
+    }
+
+    h1 {
+      font-weight: 800;
+      font-size: clamp(2.4rem, 6.5vw, 4.25rem);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+    }
+
+    h2 {
+      font-weight: 700;
+      font-size: clamp(1.85rem, 4.5vw, 2.85rem);
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      font-weight: 700;
+      font-size: clamp(1.25rem, 2.6vw, 1.55rem);
+      margin-bottom: 0.75rem;
+    }
+
+    p { margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    .lead {
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      line-height: 1.55;
+      color: var(--text-soft);
+      max-width: 36em;
+    }
+
+    .eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-deep);
+      margin-bottom: 1rem;
+    }
+
+    .highlight {
+      background: linear-gradient(180deg, transparent 62%, rgba(245, 184, 0, 0.45) 62%);
+      padding: 0 0.06em;
+    }
+
+    /* ---------- Header ---------- */
+    .site-header {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--rule);
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 50;
+      backdrop-filter: saturate(150%) blur(8px);
+      -webkit-backdrop-filter: saturate(150%) blur(8px);
+    }
+
+    .site-header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .brand-dot {
+      color: var(--accent);
+    }
+
+    .header-cta {
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      color: var(--text);
+      padding: 0.45rem 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.15s ease;
+    }
+    .header-cta:hover { border-bottom-color: var(--accent); }
+
+    /* ---------- Buttons / CTAs ---------- */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 1.75rem;
+      background: var(--accent);
+      color: var(--text);
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1.05rem;
+      text-decoration: none;
+      box-shadow: 0 1px 0 rgba(28, 28, 28, 0.15);
+      transition: background 0.15s ease, transform 0.05s ease;
+    }
+    .btn-primary:hover { background: var(--accent-deep); }
+    .btn-primary:active { transform: translateY(1px); }
+
+    .cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 600;
+      font-size: 1.05rem;
+      text-decoration: none;
+      color: var(--text);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 2px;
+    }
+    .cta-link .arrow { color: var(--accent-deep); transition: transform 0.15s ease; }
+    .cta-link:hover .arrow { transform: translateX(3px); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      padding: 5rem 0 6rem;
+      min-height: calc(85vh - 70px);
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-inner {
+      max-width: 38ch;
+    }
+
+    .hero h1 {
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-sub {
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      line-height: 1.6;
+      color: var(--text-soft);
+      margin-bottom: 2.5rem;
+      max-width: 38em;
+    }
+
+    /* ---------- Section: problem ---------- */
+    .problem-points {
+      display: grid;
+      gap: 1.25rem;
+      margin-top: 2rem;
+      max-width: 42em;
+    }
+    .problem-points li {
+      padding-left: 1.5rem;
+      position: relative;
+      line-height: 1.55;
+    }
+    .problem-points li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: 0.6em;
+    }
+    .problem-points strong { font-weight: 600; }
+
+    /* ---------- Section: services ---------- */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+    .service {
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 2rem 1.75rem;
+    }
+    .section-alt .service { background: #ffffff; }
+    .service h3 { margin-bottom: 0.85rem; }
+    .service ul {
+      margin: 1rem 0 0;
+      display: grid;
+      gap: 0.5rem;
+    }
+    .service ul li {
+      padding-left: 1.25rem;
+      position: relative;
+      color: var(--text-soft);
+    }
+    .service ul li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--accent-deep);
+      font-weight: 600;
+    }
+    .services-footer {
+      margin-top: 2.75rem;
+      max-width: 42em;
+    }
+    .services-footer p {
+      font-size: 1.05rem;
+      color: var(--text-soft);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ---------- Section: how it works ---------- */
+    .steps {
+      display: grid;
+      gap: 1.75rem;
+      margin-top: 2.5rem;
+      max-width: 50em;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.25rem;
+      align-items: start;
+    }
+    .step-num {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--accent-deep);
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .step-body {
+      padding-top: 0.35rem;
+      line-height: 1.6;
+    }
+    .how-cta {
+      margin-top: 2.75rem;
+    }
+
+    /* ---------- Section: why ---------- */
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.25rem;
+      margin-top: 2.5rem;
+    }
+    .why-item h3 { margin-bottom: 0.75rem; }
+    .why-item p { color: var(--text-soft); }
+
+    /* ---------- Section: about ---------- */
+    .about-body {
+      max-width: 38em;
+      font-size: 1.05rem;
+    }
+    .about-body p { margin-bottom: 1.25rem; }
+
+    /* ---------- Section: contact ---------- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      margin-top: 2.5rem;
+      align-items: start;
+    }
+    .contact-intro p { color: var(--text-soft); max-width: 32em; }
+
+    .contact-form {
+      display: grid;
+      gap: 1.25rem;
+      max-width: 32rem;
+    }
+    .contact-form label {
+      display: grid;
+      gap: 0.4rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1px solid rgba(28, 28, 28, 0.18);
+      border-radius: 8px;
+      font: inherit;
+      background: #ffffff;
+      color: var(--text);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(245, 184, 0, 0.18);
+    }
+    .contact-form textarea { resize: vertical; min-height: 7rem; }
+    .contact-form button[type="submit"] {
+      justify-self: start;
+      margin-top: 0.5rem;
+    }
+    .form-status {
+      margin-top: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      min-height: 1.5em;
+    }
+    .form-status.success { color: var(--accent-deep); font-weight: 500; }
+    .form-status.error { color: #b00020; }
+
+    .hidden-honeypot {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+    }
+
+    .contact-fallback {
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      color: var(--text-soft);
+    }
+    .contact-fallback a {
+      color: var(--text);
+      border-bottom: 2px solid var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* ---------- Footer ---------- */
+    .site-footer {
+      padding: 2.5rem 0 3rem;
+      border-top: 1px solid var(--rule);
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+    .site-footer .container {
+      display: grid;
+      gap: 0.75rem;
+    }
+    .site-footer a {
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+    }
+
+    /* ---------- Desktop ---------- */
+    @media (min-width: 720px) {
+      section { padding: 7rem 0; }
+
+      .hero { padding: 6rem 0 8rem; }
+
+      .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.75rem;
+      }
+      .service { padding: 2.25rem 2rem; }
+
+      .why-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr 1.2fr;
+        gap: 5rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      body { font-size: 18px; }
+      .container { padding-left: 2rem; padding-right: 2rem; }
+    }
+
+    /* ---------- Reduced motion ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; animation: none !important; }
+    }
+  </style>
 </head>
 <body>
 
-<nav id="nav">
-  <a href="#" class="logomark">
-    <span class="logo-icon">g</span>
-    <span class="logo-text">GrafterUK</span>
-  </a>
-  <a href="#contact" class="nav-cta">Book a Call</a>
-</nav>
-
-<!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="hero-text">
-    <div class="hero-kicker fade-up">
-      <span class="hero-kicker-dot"></span>
-      Marketing for local British businesses
+  <header class="site-header">
+    <div class="container">
+      <a href="#" class="brand">grafter<span class="brand-dot">.</span>uk</a>
+      <a href="#contact" class="header-cta">Contact</a>
     </div>
-    <h1 class="fade-up delay-1">
-      More customers for your <span class="accent">local dairy<svg viewBox="0 0 200 20" preserveAspectRatio="none"><path d="M5,15 Q50,3 100,10 T195,8"/></svg></span>.
-    </h1>
-    <p class="hero-sub fade-up delay-2">
-      We help independent British dairies win back the households that have drifted to out-of-area chains. <strong>Local marketing, warm signups, and route density that actually pays for itself.</strong>
-    </p>
-    <div class="hero-cta-row fade-up delay-3">
-      <a href="#contact" class="btn-primary">
-        <span>Book a free call</span>
-        <span class="arrow">→</span>
-      </a>
-      <a href="#how" class="btn-text">
-        See how it works
-        <span class="arrow">↓</span>
-      </a>
-    </div>
-  </div>
-  
-  <div class="hero-illus fade-up delay-4">
-    <div class="hero-blob"></div>
-    <div class="hero-blob-accent"></div>
-    <div class="hero-blob-accent-2"></div>
-    
-    <svg class="float-elem wheat" viewBox="0 0 100 120" fill="none" stroke="#a5613e" stroke-width="1.8" stroke-linecap="round">
-      <line x1="50" y1="20" x2="50" y2="115"/>
-      <ellipse cx="40" cy="30" rx="5" ry="10" fill="#f2c94c" stroke="none" transform="rotate(-25 40 30)"/>
-      <ellipse cx="60" cy="30" rx="5" ry="10" fill="#f2c94c" stroke="none" transform="rotate(25 60 30)"/>
-      <ellipse cx="38" cy="45" rx="5" ry="10" fill="#f2c94c" stroke="none" transform="rotate(-30 38 45)"/>
-      <ellipse cx="62" cy="45" rx="5" ry="10" fill="#f2c94c" stroke="none" transform="rotate(30 62 45)"/>
-      <ellipse cx="36" cy="60" rx="5" ry="10" fill="#f2c94c" stroke="none" transform="rotate(-35 36 60)"/>
-      <ellipse cx="64" cy="60" rx="5" ry="10" fill="#f2c94c" stroke="none" transform="rotate(35 64 60)"/>
-      <ellipse cx="34" cy="75" rx="5" ry="10" fill="#f2c94c" stroke="none" transform="rotate(-40 34 75)"/>
-      <ellipse cx="66" cy="75" rx="5" ry="10" fill="#f2c94c" stroke="none" transform="rotate(40 66 75)"/>
-    </svg>
-    
-    <svg class="float-elem leaf" viewBox="0 0 100 100" fill="#687e5e">
-      <path d="M 50 10 Q 85 30 80 70 Q 60 90 50 90 Q 40 90 20 70 Q 15 30 50 10 Z" opacity="0.85"/>
-      <path d="M 50 10 L 50 90" stroke="#4f6348" stroke-width="1" fill="none"/>
-      <path d="M 50 30 Q 60 40 65 50 M 50 50 Q 62 58 68 62 M 50 70 Q 60 73 63 75" stroke="#4f6348" stroke-width="0.8" fill="none" opacity="0.6"/>
-    </svg>
-    
-    <svg class="float-elem sparkle" viewBox="0 0 40 40" fill="#f2c94c">
-      <path d="M 20 0 L 22 18 L 40 20 L 22 22 L 20 40 L 18 22 L 0 20 L 18 18 Z"/>
-    </svg>
-    
-    <div class="bottle-wrap">
-      <svg class="bottle-svg" viewBox="0 0 180 280" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="bottleGlass" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
-            <stop offset="35%" stop-color="#ffffff" stop-opacity="0.7"/>
-            <stop offset="100%" stop-color="#f1ebdd" stop-opacity="0.5"/>
-          </linearGradient>
-        </defs>
-        <rect x="62" y="8" width="56" height="22" rx="4" fill="#f2c94c"/>
-        <rect x="62" y="8" width="56" height="22" rx="4" fill="#e5b93d" opacity="0.25" clip-path="inset(60% 0 0 0)"/>
-        <ellipse cx="90" cy="10" rx="28" ry="3" fill="#f8e199"/>
-        <path d="M 70 30 L 70 55 L 55 70 L 55 260 Q 55 270 65 270 L 115 270 Q 125 270 125 260 L 125 70 L 110 55 L 110 30 Z" fill="url(#bottleGlass)" stroke="#232019" stroke-width="2" stroke-linejoin="round"/>
-        <path d="M 65 80 Q 63 150 65 240" stroke="#ffffff" stroke-width="3" fill="none" opacity="0.7" stroke-linecap="round"/>
-        <rect x="62" y="110" width="56" height="120" rx="6" fill="#faf6ef" stroke="#232019" stroke-width="1.2"/>
-        <circle cx="90" cy="140" r="14" fill="none" stroke="#687e5e" stroke-width="1.2"/>
-        <g transform="translate(90 140)" fill="#687e5e">
-          <ellipse cx="0" cy="1" rx="8" ry="5"/>
-          <ellipse cx="-7" cy="-2" rx="3" ry="2.5"/>
-          <rect x="-5" y="4" width="1.5" height="4"/>
-          <rect x="-1" y="4" width="1.5" height="4"/>
-          <rect x="3" y="4" width="1.5" height="4"/>
-          <path d="M 7 0 Q 9 -1 8 2" stroke="#687e5e" stroke-width="1" fill="none"/>
-        </g>
-        <text x="90" y="175" text-anchor="middle" font-family="Fraunces, serif" font-size="8" font-style="italic" fill="#687e5e" letter-spacing="1.5">FRESH · LOCAL</text>
-        <text x="90" y="198" text-anchor="middle" font-family="Fraunces, serif" font-size="17" font-weight="600" fill="#232019">MILK</text>
-        <line x1="78" y1="208" x2="102" y2="208" stroke="#c97b4f" stroke-width="1"/>
-        <text x="90" y="220" text-anchor="middle" font-family="Fraunces, serif" font-size="7" font-style="italic" fill="#5a5448">one pint · fresh daily</text>
-      </svg>
-    </div>
-  </div>
-</section>
+  </header>
 
-<!-- ============ RIBBON ============ -->
-<div class="ribbon">
-  <div class="ribbon-track">
-    <span class="ribbon-item">Fresh local milk <span class="ribbon-dot"></span></span>
-    <span class="ribbon-item">Glass bottles <span class="ribbon-dot"></span></span>
-    <span class="ribbon-item">Route density <span class="ribbon-dot"></span></span>
-    <span class="ribbon-item">Pay per customer <span class="ribbon-dot"></span></span>
-    <span class="ribbon-item">Zero retainer <span class="ribbon-dot"></span></span>
-    <span class="ribbon-item">Hertfordshire first <span class="ribbon-dot"></span></span>
-    <span class="ribbon-item">Fresh local milk <span class="ribbon-dot"></span></span>
-    <span class="ribbon-item">Glass bottles <span class="ribbon-dot"></span></span>
-    <span class="ribbon-item">Route density <span class="ribbon-dot"></span></span>
-    <span class="ribbon-item">Pay per customer <span class="ribbon-dot"></span></span>
-    <span class="ribbon-item">Zero retainer <span class="ribbon-dot"></span></span>
-    <span class="ribbon-item">Hertfordshire first <span class="ribbon-dot"></span></span>
-  </div>
-</div>
+  <main>
 
-<!-- ============ PROBLEM ============ -->
-<section class="problem">
-  <div class="section-inner">
-    <div class="problem-grid">
-      <div>
-        <div class="eyebrow">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 L14 8 L20 10 L14 12 L12 22 L10 12 L4 10 L10 8 Z"/></svg>
-          The problem
-        </div>
-        <h2>The nation's <span class="italic">doorsteps</span> have been quietly outsourced.</h2>
-      </div>
-      <div class="problem-text">
-        <p>Doorstep milk used to be local. One dairy, a few miles away, round the corner every morning before school. Now most British households wake up to milk that's travelled from a regional depot owned by one of a handful of national operators — often hundreds of miles from the fridge it ends up in.</p>
-        <p><strong>The milk is fine. The economics are the problem.</strong> Local dairies run better rounds, with fresher product, in glass bottles, with drivers who actually know their customers. But most households don't know you exist — because the national chains out-market you ten to one.</p>
-        <p>That's what we're here to fix.</p>
-      </div>
-    </div>
-
-    <div class="stat-cards">
-      <div class="stat-card">
-        <div class="stat-card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h18M3 12c0-5 4-9 9-9s9 4 9 9M3 12c0 5 4 9 9 9s9-4 9-9"/></svg>
-        </div>
-        <div class="stat-number">3<sub>%</sub></div>
-        <div class="stat-desc">of UK milk is now delivered to the doorstep — down from 94% in 1975.</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17h2l2-6h10l2 6h2M5 17v2a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-2M15 17v2a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-2M7 11V7a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v4"/><circle cx="8" cy="17" r="1.5"/><circle cx="16" cy="17" r="1.5"/></svg>
-        </div>
-        <div class="stat-number">400<sub>mi</sub></div>
-        <div class="stat-desc">Some households receive milk transported hundreds of miles from regional depots.</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-6 9 6v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"/><path d="M9 22V12h6v10"/></svg>
-        </div>
-        <div class="stat-number">100<sub>%</sub></div>
-        <div class="stat-desc">of households in your delivery area already buy milk. The market is already there.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ OFFER ============ -->
-<section class="offer" id="how">
-  <div class="section-inner">
-    <div class="offer-header">
-      <div>
-        <div class="eyebrow">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg>
-          What we do
-        </div>
-        <h2>We find your <span class="italic">next hundred customers</span> — one road at a time.</h2>
-      </div>
-      <p class="offer-intro">No retainers, no long contracts, no marketing jargon. We market your dairy to the streets around your depot, and you only pay for customers who actually sign up.</p>
-    </div>
-
-    <div class="steps">
-      <div class="step">
-        <div class="step-badge"><span class="step-badge-num">01</span> Street first</div>
-        <h3>We pick a street</h3>
-        <p>We start with one road in your delivery area. High household density, the right demographic, and close to your existing rounds so drops-per-mile stay efficient.</p>
-      </div>
-      <div class="step">
-        <div class="step-badge"><span class="step-badge-num">02</span> Marketing</div>
-        <h3>We do the marketing</h3>
-        <p>Leaflets, door-knocks, Nextdoor, local Facebook groups, a dedicated landing page. All paid for by us, all carrying your story and your bottles.</p>
-      </div>
-      <div class="step">
-        <div class="step-badge"><span class="step-badge-num">03</span> Signups</div>
-        <h3>Signups come to you</h3>
-        <p>Warm, pre-qualified, delivery preferences sorted. Your office staff don't do extra admin — they just add the new customer to the round.</p>
-      </div>
-      <div class="step">
-        <div class="step-badge"><span class="step-badge-num">04</span> Pay per win</div>
-        <h3>You pay per customer</h3>
-        <p>A simple referral fee for each confirmed signup. If we deliver nothing, you pay nothing. Once one street works, we scale to the next.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ DENSITY ============ -->
-<section class="density">
-  <div class="section-inner">
-    <div class="density-grid">
-      <div class="density-text">
-        <div class="eyebrow">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8" opacity="0.4"/></svg>
-          Why it works
-        </div>
-        <h2>Milk rounds live and die on <span class="italic">route density</span>.</h2>
-        <p>You already know this. Every extra drop-per-mile improves the economics of your round. Every customer who lives two streets away from an existing one is almost pure margin.</p>
-        <p>That's why we don't scatter marketing across a whole county. We grow outward, concentrically — one road, then the adjacent roads, then the whole neighbourhood.</p>
-        <div class="pullquote">"You're not asking us to spread thin across a big area. You're asking us to grow outward from one dense starting point."</div>
-        <p>That's the whole model. It's how local dairies used to grow before the big chains. We just point the marketing at the right doors.</p>
-      </div>
-      <div class="route-viz">
-        <div class="route-viz-label">
-          <span class="legend-dot" style="background: #c97b4f;"></span>
-          Round Expansion
-        </div>
-        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="200" cy="200" r="55" fill="none" stroke="#687e5e" stroke-width="1.5" opacity="0.85"/>
-          <circle cx="200" cy="200" r="105" fill="none" stroke="#687e5e" stroke-width="1" stroke-dasharray="4 6" opacity="0.5"/>
-          <circle cx="200" cy="200" r="160" fill="none" stroke="#687e5e" stroke-width="1" stroke-dasharray="4 6" opacity="0.3"/>
-          <g fill="#c97b4f">
-            <circle cx="175" cy="180" r="4"/><circle cx="200" cy="170" r="4"/><circle cx="225" cy="180" r="4"/><circle cx="235" cy="200" r="4"/><circle cx="225" cy="220" r="4"/><circle cx="200" cy="230" r="4"/><circle cx="175" cy="220" r="4"/><circle cx="165" cy="200" r="4"/>
-          </g>
-          <g fill="#687e5e" opacity="0.7">
-            <circle cx="140" cy="165" r="3"/><circle cx="175" cy="130" r="3"/><circle cx="220" cy="125" r="3"/><circle cx="260" cy="150" r="3"/><circle cx="280" cy="195" r="3"/><circle cx="275" cy="240" r="3"/><circle cx="245" cy="275" r="3"/><circle cx="200" cy="285" r="3"/><circle cx="150" cy="270" r="3"/><circle cx="120" cy="225" r="3"/>
-          </g>
-          <g fill="#687e5e" opacity="0.35">
-            <circle cx="85" cy="160" r="2.5"/><circle cx="130" cy="95" r="2.5"/><circle cx="205" cy="68" r="2.5"/><circle cx="280" cy="95" r="2.5"/><circle cx="330" cy="165" r="2.5"/><circle cx="345" cy="240" r="2.5"/><circle cx="310" cy="300" r="2.5"/><circle cx="240" cy="335" r="2.5"/><circle cx="155" cy="330" r="2.5"/><circle cx="85" cy="280" r="2.5"/><circle cx="60" cy="215" r="2.5"/>
-          </g>
-          <circle cx="200" cy="200" r="10" fill="#f2c94c"/>
-          <circle cx="200" cy="200" r="18" fill="none" stroke="#f2c94c" stroke-width="1.5" opacity="0.5"/>
-          <text x="200" y="155" text-anchor="middle" font-family="Fraunces, serif" font-size="11" font-style="italic" fill="#5a5448" font-weight="500">Your depot</text>
-        </svg>
-        <div class="route-viz-legend">
-          <div class="legend-pill"><span class="legend-dot" style="background: #c97b4f;"></span>First road</div>
-          <div class="legend-pill"><span class="legend-dot" style="background: #687e5e;"></span>Expansion</div>
+    <!-- HERO -->
+    <section class="hero" aria-label="Introduction">
+      <div class="container">
+        <div class="hero-inner">
+          <h1>Stop <span class="highlight">losing quotes</span>. Less time on admin, more time on the job.</h1>
+          <p class="hero-sub">GrafterUK builds AI systems that handle quote follow-ups, customer chases, scheduling, and review requests for plumbers, electricians, and every other UK trade. Lead network launching Q3.</p>
+          <a href="#contact" class="btn-primary">Tell us what you struggle with <span aria-hidden="true">→</span></a>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- ============ QUOTE ============ -->
-<section class="quote-section">
-  <div class="quote-inner">
-    <svg class="quote-icon" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M 15 25 Q 15 15 25 15 L 25 30 L 15 30 Z" fill="currentColor"/>
-      <path d="M 35 25 Q 35 15 45 15 L 45 30 L 35 30 Z" fill="currentColor"/>
-      <path d="M 15 35 L 15 45 M 35 35 L 35 45"/>
-    </svg>
-    <p class="big-quote">The milkman used to know every door on the street. <span class="italic">We'd just like to help him find them again.</span></p>
-    <div class="quote-attr">
-      <span class="quote-attr-name">Jordan</span>
-      <span class="quote-attr-sep">·</span>
-      <span>Founder, GrafterUK</span>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CTA ============ -->
-<section class="cta-section" id="contact">
-  <div class="cta-inner">
-    <div class="eyebrow" style="background: rgba(250,246,239,0.12); border-color: rgba(250,246,239,0.2); color: var(--cream);">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#f2c94c" stroke-width="2"><path d="M3 5h18l-2 12H5L3 5z"/><path d="M3 5l-1-2H0"/></svg>
-      Get in touch
-    </div>
-    <h2>Let's talk about <span class="italic">your round</span>.</h2>
-    <p>If you run a local British dairy and you'd like more households on your rounds, we'd like to hear from you. A 15-minute call, no pitch, no obligation.</p>
-    <div class="cta-actions">
-      <a href="mailto:jordan@grafteruk.co.uk" class="btn-cream">
-        <span>Email Jordan</span>
-        <span class="arrow">→</span>
-      </a>
-      <a href="mailto:jordan@grafteruk.co.uk?subject=Dairy%20Partnership%20Enquiry" class="btn-ghost">Start a conversation</a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FOOTER ============ -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div>
-        <div class="footer-brand">
-          <span class="logo-icon">g</span>
-          <span class="footer-brand-text">GrafterUK</span>
+    <!-- PROBLEM -->
+    <section class="section-alt" aria-labelledby="problem-h">
+      <div class="container">
+        <p class="eyebrow">The reality</p>
+        <h2 id="problem-h">The admin trap most trades fall into</h2>
+        <div class="lead">
+          <p>You finish a job. Send a quote. Then... silence.</p>
+          <p>You forget to chase. Three weeks later, that £4,000 install went to someone who DID follow up.</p>
+          <p>Sound familiar?</p>
         </div>
-        <p class="footer-tag">Marketing for local British businesses. Currently helping independent dairies win back the households they deserve.</p>
+        <ul class="problem-points">
+          <li><strong>Lost quotes</strong> — sent, never chased, never won</li>
+          <li><strong>Hours on admin</strong> — texts, callbacks, scheduling, reviews — eating evenings and weekends</li>
+          <li><strong>Forgotten reviews</strong> — every job missed is a Google ranking lost</li>
+        </ul>
       </div>
-      <div class="footer-col">
-        <h4>Get in touch</h4>
-        <a href="mailto:jordan@grafteruk.co.uk">jordan@grafteruk.co.uk</a>
-        <a href="#contact">Book a call</a>
-      </div>
-      <div class="footer-col">
-        <h4>Based in</h4>
-        <p>Hertfordshire, UK</p>
-        <p>Serving dairies nationally</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div>© 2026 GrafterUK — All rights reserved</div>
-      <div>Marketing for local British businesses</div>
-    </div>
-  </div>
-</footer>
+    </section>
 
-<script>
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 20) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
-  });
-</script>
+    <!-- SERVICES -->
+    <section aria-labelledby="services-h">
+      <div class="container">
+        <p class="eyebrow">What we do</p>
+        <h2 id="services-h">What we build</h2>
 
+        <div class="services-grid">
+          <article class="service">
+            <h3>AI Admin Assistant</h3>
+            <p>Your customers text you. Email you. Call you. WhatsApp you. Half the time you forget to reply.</p>
+            <p>Our system handles it. Custom-built for your business:</p>
+            <ul>
+              <li>Auto-responds to enquiries (qualifying them with the right questions)</li>
+              <li>Chases quotes after 3, 7, and 14 days</li>
+              <li>Sends review requests when jobs complete</li>
+              <li>Reactivates old customers who haven't booked in months</li>
+              <li>Reminds you of follow-ups you'd otherwise miss</li>
+            </ul>
+            <p style="margin-top:1.25rem;">You answer the calls that matter. The system handles everything else.</p>
+          </article>
+
+          <article class="service">
+            <h3>AI Quote System</h3>
+            <p>You take a few photos. Add a quick description.</p>
+            <p>The system generates a defensible quote — priced your way, in your tone, with all your terms. You review, edit if needed, send.</p>
+            <p style="margin-top:1.25rem;"><strong>30 minutes of admin per quote becomes 2 minutes.</strong></p>
+          </article>
+
+          <article class="service">
+            <h3>Custom Tools</h3>
+            <p>Got a specific problem only you have? We build for it.</p>
+            <p>Job sheet management. Customer database tidy-up. Stock tracking. Compliance reminders. Whatever's eating your time and we can fix with AI, we'll build it.</p>
+            <p style="margin-top:1.25rem;">One quote, one build, ongoing access.</p>
+          </article>
+        </div>
+
+        <div class="services-footer">
+          <p>All three work together. Pick one or all. Setup once, monthly access, we keep it running and updated.</p>
+          <a href="#contact" class="cta-link">Tell us what you need <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section-alt" aria-labelledby="how-h">
+      <div class="container">
+        <p class="eyebrow">The process</p>
+        <h2 id="how-h">How it works</h2>
+
+        <ol class="steps">
+          <li class="step">
+            <div class="step-num" aria-hidden="true">1</div>
+            <div class="step-body">We talk for 30 minutes. You tell us what's eating your time. We tell you what we can fix with AI. No sales pitch, no obligation.</div>
+          </li>
+          <li class="step">
+            <div class="step-num" aria-hidden="true">2</div>
+            <div class="step-body">We build the system. Configured for your business — your tone, your services, your prices. Usually 5–10 working days.</div>
+          </li>
+          <li class="step">
+            <div class="step-num" aria-hidden="true">3</div>
+            <div class="step-body">You get access. Login, walkthrough, a 30-minute training call. Day one running.</div>
+          </li>
+          <li class="step">
+            <div class="step-num" aria-hidden="true">4</div>
+            <div class="step-body">We keep it running. Updates, fixes, new features as they come. You contact us for support of any issues. We sort it.</div>
+          </li>
+        </ol>
+
+        <div class="how-cta">
+          <a href="#contact" class="btn-primary">Book a 30-minute call <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY -->
+    <section aria-labelledby="why-h">
+      <div class="container">
+        <p class="eyebrow">Why us</p>
+        <h2 id="why-h">Why GrafterUK</h2>
+
+        <div class="why-grid">
+          <div class="why-item">
+            <h3>Built with Claude.</h3>
+            <p>The AI behind some of the world's biggest companies, configured for your one-person trade business. Most "AI marketing agencies" are using last-year's tools. We're not.</p>
+          </div>
+          <div class="why-item">
+            <h3>We run our own businesses.</h3>
+            <p>GrafterUK isn't theoretical. We run live lead-gen sites and AI systems in production every day. We test on ourselves before we sell to you.</p>
+          </div>
+          <div class="why-item">
+            <h3>Direct contact, no account managers.</h3>
+            <p>You speak to the person who built your system. Not a sales rep, not a junior. If something breaks, the person who knows the code is the person who answers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section-alt" aria-labelledby="about-h">
+      <div class="container">
+        <p class="eyebrow">The founder</p>
+        <h2 id="about-h">About</h2>
+        <div class="about-body">
+          <p>GrafterUK is built by Jordan Scowen — a UK founder running multiple AI-powered businesses, including lead-gen sites and now custom AI tools for trade businesses.</p>
+          <p>The pattern that keeps coming back: small businesses doing brilliant work, losing time and money to admin nobody enjoys. GrafterUK fixes that.</p>
+          <p>Hertfordshire-based. UK-wide service. GrafterUK Ltd company number to follow.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contact-h">
+      <div class="container">
+        <p class="eyebrow">Get in touch</p>
+        <h2 id="contact-h">Tell us what you struggle with</h2>
+
+        <div class="contact-grid">
+          <div class="contact-intro">
+            <p>No sales pitch. We'll have a 30-minute call, you tell us what's eating your time, and we'll tell you straight whether AI can fix it.</p>
+            <p class="contact-fallback">Or email: <a href="mailto:jordan@grafteruk.co.uk">jordan@grafteruk.co.uk</a></p>
+          </div>
+
+          <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+            <input type="hidden" name="access_key" value="612f0ea2-5df6-4f01-9ba0-96e059f0728e">
+            <input type="hidden" name="subject" value="New GrafterUK enquiry">
+            <input type="hidden" name="from_name" value="GrafterUK Website">
+            <input type="checkbox" name="botcheck" class="hidden-honeypot" tabindex="-1" autocomplete="off">
+
+            <label>
+              Your name
+              <input type="text" name="name" required autocomplete="name">
+            </label>
+
+            <label>
+              Your business
+              <input type="text" name="business" required autocomplete="organization">
+            </label>
+
+            <label>
+              Your trade
+              <input type="text" name="trade" placeholder="plumber, electrician, etc." required>
+            </label>
+
+            <label>
+              What's eating your time?
+              <textarea name="message" rows="4" required></textarea>
+            </label>
+
+            <label>
+              Phone or email
+              <input type="text" name="contact" placeholder="whichever you prefer" required>
+            </label>
+
+            <button type="submit" class="btn-primary">Send <span aria-hidden="true">→</span></button>
+            <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div>&copy; <span id="year">2026</span> GrafterUK. AI growth tools for UK trade businesses.</div>
+      <div><a href="mailto:jordan@grafteruk.co.uk">jordan@grafteruk.co.uk</a> · Hertfordshire, UK-wide service</div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      // Year stamp
+      var y = document.getElementById('year');
+      if (y) y.textContent = String(new Date().getFullYear());
+
+      // Form: AJAX submit so we stay on page and show inline status
+      var form = document.getElementById('contact-form');
+      var status = document.getElementById('form-status');
+      if (!form || !status) return;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Honeypot — silently drop bot submissions
+        if (form.querySelector('[name="botcheck"]').checked) return;
+
+        status.className = 'form-status';
+        status.textContent = 'Sending…';
+
+        var data = new FormData(form);
+        var json = {};
+        data.forEach(function (v, k) { json[k] = v; });
+
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(json)
+        })
+          .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, body: j }; }); })
+          .then(function (res) {
+            if (res.ok && res.body && res.body.success !== false) {
+              status.className = 'form-status success';
+              status.textContent = "Thanks. We'll be in touch within 24 hours.";
+              form.reset();
+            } else {
+              status.className = 'form-status error';
+              status.textContent = (res.body && res.body.message) || 'Something went wrong. Please email jordan@grafteruk.co.uk directly.';
+            }
+          })
+          .catch(function () {
+            status.className = 'form-status error';
+            status.textContent = 'Connection error. Please email jordan@grafteruk.co.uk directly.';
+          });
+      });
+    })();
+  </script>
 </body>
 </html>
