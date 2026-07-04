@@ -1,712 +1,264 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GrafterUK — AI growth tools for UK trade businesses</title>
-  <meta name="description" content="GrafterUK builds AI systems that handle quote follow-ups, customer chases, scheduling, and review requests for plumbers, electricians, and every other UK trade. Lead network launching Q3 2026.">
-  <meta property="og:title" content="GrafterUK — AI growth tools for UK trade businesses">
-  <meta property="og:description" content="Stop losing quotes. Less time on admin, more time on the job. AI systems built for UK trades.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://grafteruk.co.uk">
-  <meta name="theme-color" content="#FAFAF7">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    /* ---------- Reset / base ---------- */
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body, h1, h2, h3, p, ul, ol, figure { margin: 0; }
-    ul, ol { padding: 0; list-style: none; }
-    button { font: inherit; cursor: pointer; border: none; }
-    a { color: inherit; }
-
-    :root {
-      --bg: #FAFAF7;
-      --bg-alt: #FFF8E5;
-      --text: #1C1C1C;
-      --text-soft: #4a4a4a;
-      --accent: #F5B800;
-      --accent-deep: #d99e00;
-      --rule: rgba(28, 28, 28, 0.08);
-      --container: 1080px;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      font-size: 17px;
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
-    }
-
-    /* ---------- Layout primitives ---------- */
-    .container {
-      width: 100%;
-      max-width: var(--container);
-      margin: 0 auto;
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
-
-    section {
-      padding: 5rem 0;
-    }
-
-    .section-alt {
-      background: var(--bg-alt);
-    }
-
-    /* ---------- Typography ---------- */
-    h1, h2, h3 {
-      font-family: 'Bricolage Grotesque', system-ui, sans-serif;
-      letter-spacing: -0.015em;
-      line-height: 1.1;
-    }
-
-    h1 {
-      font-weight: 800;
-      font-size: clamp(2.4rem, 6.5vw, 4.25rem);
-      line-height: 1.05;
-      letter-spacing: -0.025em;
-    }
-
-    h2 {
-      font-weight: 700;
-      font-size: clamp(1.85rem, 4.5vw, 2.85rem);
-      margin-bottom: 1.5rem;
-    }
-
-    h3 {
-      font-weight: 700;
-      font-size: clamp(1.25rem, 2.6vw, 1.55rem);
-      margin-bottom: 0.75rem;
-    }
-
-    p { margin-bottom: 1rem; }
-    p:last-child { margin-bottom: 0; }
-
-    .lead {
-      font-size: clamp(1.05rem, 2vw, 1.25rem);
-      line-height: 1.55;
-      color: var(--text-soft);
-      max-width: 36em;
-    }
-
-    .eyebrow {
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent-deep);
-      margin-bottom: 1rem;
-    }
-
-    .highlight {
-      background: linear-gradient(180deg, transparent 62%, rgba(245, 184, 0, 0.45) 62%);
-      padding: 0 0.06em;
-    }
-
-    /* ---------- Header ---------- */
-    .site-header {
-      padding: 1.25rem 0;
-      border-bottom: 1px solid var(--rule);
-      position: sticky;
-      top: 0;
-      background: var(--bg);
-      z-index: 50;
-      backdrop-filter: saturate(150%) blur(8px);
-      -webkit-backdrop-filter: saturate(150%) blur(8px);
-    }
-
-    .site-header .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .brand {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-weight: 800;
-      font-size: 1.25rem;
-      letter-spacing: -0.02em;
-      text-decoration: none;
-      color: var(--text);
-    }
-
-    .brand-dot {
-      color: var(--accent);
-    }
-
-    .header-cta {
-      font-weight: 600;
-      font-size: 0.95rem;
-      text-decoration: none;
-      color: var(--text);
-      padding: 0.45rem 0;
-      border-bottom: 2px solid transparent;
-      transition: border-color 0.15s ease;
-    }
-    .header-cta:hover { border-bottom-color: var(--accent); }
-
-    /* ---------- Buttons / CTAs ---------- */
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 1rem 1.75rem;
-      background: var(--accent);
-      color: var(--text);
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 1.05rem;
-      text-decoration: none;
-      box-shadow: 0 1px 0 rgba(28, 28, 28, 0.15);
-      transition: background 0.15s ease, transform 0.05s ease;
-    }
-    .btn-primary:hover { background: var(--accent-deep); }
-    .btn-primary:active { transform: translateY(1px); }
-
-    .cta-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-weight: 600;
-      font-size: 1.05rem;
-      text-decoration: none;
-      color: var(--text);
-      border-bottom: 2px solid var(--accent);
-      padding-bottom: 2px;
-    }
-    .cta-link .arrow { color: var(--accent-deep); transition: transform 0.15s ease; }
-    .cta-link:hover .arrow { transform: translateX(3px); }
-
-    /* ---------- Hero ---------- */
-    .hero {
-      padding: 5rem 0 6rem;
-      min-height: calc(85vh - 70px);
-      display: flex;
-      align-items: center;
-    }
-
-    .hero-inner {
-      max-width: 38ch;
-    }
-
-    .hero h1 {
-      margin-bottom: 1.75rem;
-    }
-
-    .hero-sub {
-      font-size: clamp(1.05rem, 2vw, 1.2rem);
-      line-height: 1.6;
-      color: var(--text-soft);
-      margin-bottom: 2.5rem;
-      max-width: 38em;
-    }
-
-    /* ---------- Section: problem ---------- */
-    .problem-points {
-      display: grid;
-      gap: 1.25rem;
-      margin-top: 2rem;
-      max-width: 42em;
-    }
-    .problem-points li {
-      padding-left: 1.5rem;
-      position: relative;
-      line-height: 1.55;
-    }
-    .problem-points li::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      background: var(--accent);
-      border-radius: 50%;
-      position: absolute;
-      left: 0;
-      top: 0.6em;
-    }
-    .problem-points strong { font-weight: 600; }
-
-    /* ---------- Section: services ---------- */
-    .services-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      margin-top: 2.5rem;
-    }
-    .service {
-      background: var(--bg);
-      border: 1px solid var(--rule);
-      border-radius: 12px;
-      padding: 2rem 1.75rem;
-    }
-    .section-alt .service { background: #ffffff; }
-    .service h3 { margin-bottom: 0.85rem; }
-    .service ul {
-      margin: 1rem 0 0;
-      display: grid;
-      gap: 0.5rem;
-    }
-    .service ul li {
-      padding-left: 1.25rem;
-      position: relative;
-      color: var(--text-soft);
-    }
-    .service ul li::before {
-      content: "—";
-      position: absolute;
-      left: 0;
-      color: var(--accent-deep);
-      font-weight: 600;
-    }
-    .services-footer {
-      margin-top: 2.75rem;
-      max-width: 42em;
-    }
-    .services-footer p {
-      font-size: 1.05rem;
-      color: var(--text-soft);
-      margin-bottom: 1.5rem;
-    }
-
-    /* ---------- Section: how it works ---------- */
-    .steps {
-      display: grid;
-      gap: 1.75rem;
-      margin-top: 2.5rem;
-      max-width: 50em;
-    }
-    .step {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 1.25rem;
-      align-items: start;
-    }
-    .step-num {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-weight: 800;
-      font-size: 1.5rem;
-      color: var(--accent-deep);
-      width: 2.5rem;
-      height: 2.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--accent);
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .step-body {
-      padding-top: 0.35rem;
-      line-height: 1.6;
-    }
-    .how-cta {
-      margin-top: 2.75rem;
-    }
-
-    /* ---------- Section: why ---------- */
-    .why-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2.25rem;
-      margin-top: 2.5rem;
-    }
-    .why-item h3 { margin-bottom: 0.75rem; }
-    .why-item p { color: var(--text-soft); }
-
-    /* ---------- Section: about ---------- */
-    .about-body {
-      max-width: 38em;
-      font-size: 1.05rem;
-    }
-    .about-body p { margin-bottom: 1.25rem; }
-
-    /* ---------- Section: contact ---------- */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 3rem;
-      margin-top: 2.5rem;
-      align-items: start;
-    }
-    .contact-intro p { color: var(--text-soft); max-width: 32em; }
-
-    .contact-form {
-      display: grid;
-      gap: 1.25rem;
-      max-width: 32rem;
-    }
-    .contact-form label {
-      display: grid;
-      gap: 0.4rem;
-      font-weight: 500;
-      font-size: 0.95rem;
-    }
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 0.85rem 1rem;
-      border: 1px solid rgba(28, 28, 28, 0.18);
-      border-radius: 8px;
-      font: inherit;
-      background: #ffffff;
-      color: var(--text);
-      transition: border-color 0.15s ease, box-shadow 0.15s ease;
-    }
-    .contact-form input:focus,
-    .contact-form textarea:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(245, 184, 0, 0.18);
-    }
-    .contact-form textarea { resize: vertical; min-height: 7rem; }
-    .contact-form button[type="submit"] {
-      justify-self: start;
-      margin-top: 0.5rem;
-    }
-    .form-status {
-      margin-top: 0.75rem;
-      font-size: 0.95rem;
-      color: var(--text-soft);
-      min-height: 1.5em;
-    }
-    .form-status.success { color: var(--accent-deep); font-weight: 500; }
-    .form-status.error { color: #b00020; }
-
-    .hidden-honeypot {
-      position: absolute;
-      left: -9999px;
-      width: 1px;
-      height: 1px;
-      opacity: 0;
-    }
-
-    .contact-fallback {
-      margin-top: 1.5rem;
-      font-size: 0.95rem;
-      color: var(--text-soft);
-    }
-    .contact-fallback a {
-      color: var(--text);
-      border-bottom: 2px solid var(--accent);
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    /* ---------- Footer ---------- */
-    .site-footer {
-      padding: 2.5rem 0 3rem;
-      border-top: 1px solid var(--rule);
-      font-size: 0.9rem;
-      color: var(--text-soft);
-    }
-    .site-footer .container {
-      display: grid;
-      gap: 0.75rem;
-    }
-    .site-footer a {
-      color: var(--text);
-      text-decoration: none;
-      border-bottom: 1px solid var(--accent);
-    }
-
-    /* ---------- Desktop ---------- */
-    @media (min-width: 720px) {
-      section { padding: 7rem 0; }
-
-      .hero { padding: 6rem 0 8rem; }
-
-      .services-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.75rem;
-      }
-      .service { padding: 2.25rem 2rem; }
-
-      .why-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2.5rem;
-      }
-
-      .contact-grid {
-        grid-template-columns: 1fr 1.2fr;
-        gap: 5rem;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      body { font-size: 18px; }
-      .container { padding-left: 2rem; padding-right: 2rem; }
-    }
-
-    /* ---------- Reduced motion ---------- */
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      * { transition: none !important; animation: none !important; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GrafterUK — Marketing &amp; AI implementation for UK small businesses</title>
+<meta name="description" content="GrafterUK helps UK small businesses win more work and waste less time — practical marketing that brings enquiries in, and AI implemented where it genuinely makes the business run better.">
+<meta name="theme-color" content="#FAFAF7">
+<meta property="og:title" content="GrafterUK — Marketing &amp; AI implementation for UK small businesses">
+<meta property="og:description" content="Win more work, waste less time. Practical marketing and AI implementation for UK small businesses.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://grafteruk.co.uk">
+<style>
+  :root{
+    --ink:#1A1A1A;--body:#33322E;--paper:#FAFAF7;--card:#FFFFFF;
+    --line:#E8E5DD;--muted:#6B6960;--accent:#C7502F;--accent-dk:#A63E22;
+    --wash:#F2EFE8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--paper);color:var(--body);line-height:1.65;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 24px;}
+  a{color:inherit;}
+  h1,h2,h3{color:var(--ink);line-height:1.2;}
+  header.nav{position:sticky;top:0;background:rgba(250,250,247,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:20;}
+  header.nav .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:16px;padding-bottom:16px;}
+  header.nav .logo{font-weight:800;font-size:19px;letter-spacing:-0.02em;color:var(--ink);text-decoration:none;}
+  header.nav .logo span{color:var(--accent);}
+  header.nav a.navcta{font-size:14px;font-weight:600;color:#fff;background:var(--accent);padding:9px 18px;border-radius:8px;text-decoration:none;transition:background 0.2s;}
+  header.nav a.navcta:hover{background:var(--accent-dk);}
+  .hero{padding:80px 0 64px;text-align:center;}
+  .hero .eyebrow{font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:18px;}
+  .hero h1{font-size:44px;font-weight:800;letter-spacing:-0.025em;max-width:760px;margin:0 auto;}
+  .hero p.sub{font-size:18px;color:var(--muted);max-width:620px;margin:22px auto 0;line-height:1.6;}
+  .hero .cta-row{margin-top:34px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .hero a.cta{display:inline-block;font-size:15px;font-weight:600;color:#fff;background:var(--accent);padding:14px 26px;border-radius:9px;text-decoration:none;transition:background 0.2s;}
+  .hero a.cta:hover{background:var(--accent-dk);}
+  .hero a.cta.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);}
+  .hero a.cta.ghost:hover{background:var(--wash);}
+  section{padding:60px 0;border-top:1px solid var(--line);}
+  .eyebrow-sm{font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;text-align:center;}
+  h2.sec{font-size:30px;font-weight:800;letter-spacing:-0.02em;text-align:center;max-width:680px;margin:0 auto 8px;}
+  p.sec-sub{text-align:center;color:var(--muted);max-width:620px;margin:0 auto 40px;font-size:16px;}
+  .lede{max-width:640px;margin:0 auto;font-size:17px;}
+  .lede p{margin-bottom:16px;}
+  .lede .big{font-size:19px;color:var(--ink);font-weight:600;}
+  .painlist{max-width:640px;margin:28px auto 0;display:grid;gap:12px;}
+  .painlist .pain{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;font-size:15px;}
+  .painlist .pain b{color:var(--ink);}
+  .pillars2{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:880px;margin:0 auto;}
+  .pillarbig{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 26px;}
+  .pillarbig .tag{font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+  .pillarbig h3{font-size:20px;font-weight:700;margin-bottom:12px;}
+  .pillarbig p{font-size:14.5px;color:var(--body);margin-bottom:14px;}
+  .pillarbig ul{list-style:none;display:grid;gap:9px;}
+  .pillarbig li{font-size:14px;padding-left:22px;position:relative;color:var(--body);}
+  .pillarbig li::before{content:"→";position:absolute;left:0;color:var(--accent);font-weight:700;}
+  .pillarbig .foot{font-size:13px;color:var(--muted);margin-top:14px;font-style:italic;}
+  .honest{max-width:680px;margin:36px auto 0;background:var(--wash);border:1px solid var(--line);border-radius:12px;padding:20px 24px;text-align:center;font-size:15.5px;color:var(--ink);}
+  .honest b{color:var(--accent);}
+  .steps{max-width:720px;margin:0 auto;display:grid;gap:14px;}
+  .pstep{display:flex;gap:18px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;}
+  .pstep .num{flex:none;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:15px;}
+  .pstep .pc h4{font-size:16px;font-weight:700;margin-bottom:3px;}
+  .pstep .pc p{font-size:14px;color:var(--body);}
+  .why{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:900px;margin:0 auto;}
+  .whycard{padding:4px;}
+  .whycard h3{font-size:17px;font-weight:700;margin-bottom:8px;}
+  .whycard p{font-size:14px;color:var(--body);}
+  .about{max-width:640px;margin:0 auto;font-size:16px;}
+  .about p{margin-bottom:14px;}
+  .about .name{font-weight:700;color:var(--ink);}
+  .contact{max-width:640px;margin:0 auto;text-align:center;}
+  .contact h2{margin-bottom:10px;}
+  .contact p.intro{color:var(--muted);margin-bottom:24px;}
+  .contact a.email{display:inline-block;font-size:15px;font-weight:600;color:#fff;background:var(--accent);padding:14px 28px;border-radius:9px;text-decoration:none;transition:background 0.2s;}
+  .contact a.email:hover{background:var(--accent-dk);}
+  .contact .note{font-size:13px;color:var(--muted);margin-top:14px;}
+  .eform{max-width:520px;margin:0 auto;display:grid;gap:12px;text-align:left;}
+  .eform .frow{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .eform input[type=text],.eform input[type=email],.eform textarea{width:100%;font:inherit;font-size:14.5px;padding:12px 14px;border:1px solid var(--line);border-radius:9px;background:var(--card);color:var(--body);}
+  .eform input:focus,.eform textarea:focus{outline:2px solid var(--accent);outline-offset:0;border-color:var(--accent);}
+  .eform .fsubmit{font:inherit;font-size:15px;font-weight:600;color:#fff;background:var(--accent);padding:13px 26px;border:none;border-radius:9px;cursor:pointer;transition:background 0.2s;}
+  .eform .fsubmit:hover{background:var(--accent-dk);}
+  .eform .fsubmit:disabled{opacity:0.6;cursor:default;}
+  .fstatus{font-size:13.5px;color:var(--muted);min-height:18px;text-align:center;}
+  @media (max-width:600px){.eform .frow{grid-template-columns:1fr;}}
+  footer{border-top:1px solid var(--line);padding:34px 0;text-align:center;}
+  footer .logo{font-weight:800;font-size:16px;color:var(--ink);margin-bottom:10px;}
+  footer .logo span{color:var(--accent);}
+  footer .legal{font-size:12px;color:var(--muted);line-height:1.7;}
+  @media (max-width:800px){
+    .hero h1{font-size:32px;}
+    .pillars2{grid-template-columns:1fr;}
+    .why{grid-template-columns:1fr;gap:22px;text-align:center;}
+  }
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+</style>
 </head>
 <body>
 
-  <header class="site-header">
-    <div class="container">
-      <a href="#" class="brand">grafter<span class="brand-dot">.</span>uk</a>
-      <a href="#contact" class="header-cta">Contact</a>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="/">Grafter<span>UK</span></a>
+    <a class="navcta" href="#contact">Get in touch</a>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="hero" style="border-top:none;">
+    <div class="eyebrow">Marketing &amp; AI implementation for UK small businesses</div>
+    <h1>Win more work. Waste less time.</h1>
+    <p class="sub">I help small businesses get more customers and run more smoothly — practical marketing that brings enquiries in, and AI implemented where it genuinely makes the business work better.</p>
+    <div class="cta-row">
+      <a class="cta" href="#contact">Tell me what you need</a>
+      <a class="cta ghost" href="#what">See what I do</a>
     </div>
-  </header>
+  </section>
 
-  <main>
+  <section>
+    <div class="eyebrow-sm">The reality</div>
+    <h2 class="sec">Two things quietly hold most small businesses back</h2>
+    <p class="sec-sub">Not enough new work coming in — and too much time lost to admin that nobody enjoys.</p>
+    <div class="lede">
+      <p class="big">You're brilliant at what you do. But the phone only rings so often, and the enquiries you do get can slip through the cracks.</p>
+      <p>A customer fills in a form and waits two days for a reply. A quote goes out and never gets chased. A job finishes and the review never gets asked for. Meanwhile the evenings disappear into follow-ups, admin, and jobs a computer could do in seconds.</p>
+    </div>
+    <div class="painlist">
+      <div class="pain"><b>Not enough new enquiries</b> — relying on word of mouth and hoping the phone rings, with no system bringing new work in.</div>
+      <div class="pain"><b>Leads that slip away</b> — enquiries not answered fast enough, quotes never chased, customers who drift to whoever replied first.</div>
+      <div class="pain"><b>Hours lost to admin</b> — follow-ups, quotes, reminders, paperwork — eating into evenings and weekends.</div>
+    </div>
+  </section>
 
-    <!-- HERO -->
-    <section class="hero" aria-label="Introduction">
-      <div class="container">
-        <div class="hero-inner">
-          <h1>Stop <span class="highlight">losing quotes</span>. Less time on admin, more time on the job.</h1>
-          <p class="hero-sub">GrafterUK builds AI systems that handle quote follow-ups, customer chases, scheduling, and review requests for plumbers, electricians, and every other UK trade. Lead network launching Q3.</p>
-          <a href="#contact" class="btn-primary">Tell us what you struggle with <span aria-hidden="true">→</span></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROBLEM -->
-    <section class="section-alt" aria-labelledby="problem-h">
-      <div class="container">
-        <p class="eyebrow">The reality</p>
-        <h2 id="problem-h">The admin trap most trades fall into</h2>
-        <div class="lead">
-          <p>You finish a job. Send a quote. Then... silence.</p>
-          <p>You forget to chase. Three weeks later, that £4,000 install went to someone who DID follow up.</p>
-          <p>Sound familiar?</p>
-        </div>
-        <ul class="problem-points">
-          <li><strong>Lost quotes</strong> — sent, never chased, never won</li>
-          <li><strong>Hours on admin</strong> — texts, callbacks, scheduling, reviews — eating evenings and weekends</li>
-          <li><strong>Forgotten reviews</strong> — every job missed is a Google ranking lost</li>
+  <section id="what">
+    <div class="eyebrow-sm">What I do</div>
+    <h2 class="sec">Marketing that brings work in. AI where it genuinely helps.</h2>
+    <p class="sec-sub">Every business is different, so I don't sell a fixed package. These are the things I implement — the right mix for you depends on what's actually holding your business back.</p>
+    <div class="pillars2">
+      <div class="pillarbig">
+        <div class="tag">Business marketing</div>
+        <h3>Getting more customers</h3>
+        <p>Most small businesses are invisible to the people actively looking to buy from them. The marketing I implement fixes that:</p>
+        <ul>
+          <li>A modern website built to turn visitors into enquiries</li>
+          <li>Quote-request &amp; enquiry systems that capture every lead with the details you need</li>
+          <li>Google search presence &amp; ads — so people actively searching for what you sell find you, not a competitor</li>
+          <li>Targeted outreach to the businesses most likely to need you</li>
+          <li>Google review management — every happy customer asked at the right moment, every review responded to, so new customers see a business they can trust</li>
         </ul>
+        <p class="foot">Implemented for your business specifically — not a template.</p>
       </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section aria-labelledby="services-h">
-      <div class="container">
-        <p class="eyebrow">What we do</p>
-        <h2 id="services-h">What we build</h2>
-
-        <div class="services-grid">
-          <article class="service">
-            <h3>AI Admin Assistant</h3>
-            <p>Your customers text you. Email you. Call you. WhatsApp you. Half the time you forget to reply.</p>
-            <p>Our system handles it. Custom-built for your business:</p>
-            <ul>
-              <li>Auto-responds to enquiries (qualifying them with the right questions)</li>
-              <li>Chases quotes after 3, 7, and 14 days</li>
-              <li>Sends review requests when jobs complete</li>
-              <li>Reactivates old customers who haven't booked in months</li>
-              <li>Reminds you of follow-ups you'd otherwise miss</li>
-            </ul>
-            <p style="margin-top:1.25rem;">You answer the calls that matter. The system handles everything else.</p>
-          </article>
-
-          <article class="service">
-            <h3>AI Quote System</h3>
-            <p>You take a few photos. Add a quick description.</p>
-            <p>The system generates a defensible quote — priced your way, in your tone, with all your terms. You review, edit if needed, send.</p>
-            <p style="margin-top:1.25rem;"><strong>30 minutes of admin per quote becomes 2 minutes.</strong></p>
-          </article>
-
-          <article class="service">
-            <h3>Custom Tools</h3>
-            <p>Got a specific problem only you have? We build for it.</p>
-            <p>Job sheet management. Customer database tidy-up. Stock tracking. Compliance reminders. Whatever's eating your time and we can fix with AI, we'll build it.</p>
-            <p style="margin-top:1.25rem;">One quote, one build, ongoing access.</p>
-          </article>
-        </div>
-
-        <div class="services-footer">
-          <p>All three work together. Pick one or all. Setup once, monthly access, we keep it running and updated.</p>
-          <a href="#contact" class="cta-link">Tell us what you need <span class="arrow" aria-hidden="true">→</span></a>
-        </div>
+      <div class="pillarbig">
+        <div class="tag">AI implementation</div>
+        <h3>Running more smoothly</h3>
+        <p>Where AI genuinely makes something faster or smoother, I build it in. Examples of what that can look like:</p>
+        <ul>
+          <li>Every web enquiry acknowledged instantly by email — no lead left waiting</li>
+          <li>Quotes chased and followed up automatically, so nothing slips</li>
+          <li>Draft quotes generated from a description — you review, adjust and send</li>
+          <li>Review requests sent automatically when a job completes — and replies drafted for you to approve</li>
+          <li>Custom tools for the specific jobs eating your time — stock tracking, job sheets, reminders</li>
+        </ul>
+        <p class="foot">Always with you in control — AI handles the admin, you keep the personal contact where it matters.</p>
       </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section class="section-alt" aria-labelledby="how-h">
-      <div class="container">
-        <p class="eyebrow">The process</p>
-        <h2 id="how-h">How it works</h2>
-
-        <ol class="steps">
-          <li class="step">
-            <div class="step-num" aria-hidden="true">1</div>
-            <div class="step-body">We talk for 30 minutes. You tell us what's eating your time. We tell you what we can fix with AI. No sales pitch, no obligation.</div>
-          </li>
-          <li class="step">
-            <div class="step-num" aria-hidden="true">2</div>
-            <div class="step-body">We build the system. Configured for your business — your tone, your services, your prices. Usually 5–10 working days.</div>
-          </li>
-          <li class="step">
-            <div class="step-num" aria-hidden="true">3</div>
-            <div class="step-body">You get access. Login, walkthrough, a 30-minute training call. Day one running.</div>
-          </li>
-          <li class="step">
-            <div class="step-num" aria-hidden="true">4</div>
-            <div class="step-body">We keep it running. Updates, fixes, new features as they come. You contact us for support of any issues. We sort it.</div>
-          </li>
-        </ol>
-
-        <div class="how-cta">
-          <a href="#contact" class="btn-primary">Book a 30-minute call <span aria-hidden="true">→</span></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- WHY -->
-    <section aria-labelledby="why-h">
-      <div class="container">
-        <p class="eyebrow">Why us</p>
-        <h2 id="why-h">Why GrafterUK</h2>
-
-        <div class="why-grid">
-          <div class="why-item">
-            <h3>Built with Claude.</h3>
-            <p>The AI behind some of the world's biggest companies, configured for your one-person trade business. Most "AI marketing agencies" are using last-year's tools. We're not.</p>
-          </div>
-          <div class="why-item">
-            <h3>We run our own businesses.</h3>
-            <p>GrafterUK isn't theoretical. We run live lead-gen sites and AI systems in production every day. We test on ourselves before we sell to you.</p>
-          </div>
-          <div class="why-item">
-            <h3>Direct contact, no account managers.</h3>
-            <p>You speak to the person who built your system. Not a sales rep, not a junior. If something breaks, the person who knows the code is the person who answers.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section class="section-alt" aria-labelledby="about-h">
-      <div class="container">
-        <p class="eyebrow">The founder</p>
-        <h2 id="about-h">About</h2>
-        <div class="about-body">
-          <p>GrafterUK is built by Jordan Scowen — a UK founder running multiple AI-powered businesses, including lead-gen sites and now custom AI tools for trade businesses.</p>
-          <p>The pattern that keeps coming back: small businesses doing brilliant work, losing time and money to admin nobody enjoys. GrafterUK fixes that.</p>
-          <p>Hertfordshire-based. UK-wide service. GrafterUK Ltd company number to follow.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" aria-labelledby="contact-h">
-      <div class="container">
-        <p class="eyebrow">Get in touch</p>
-        <h2 id="contact-h">Tell us what you struggle with</h2>
-
-        <div class="contact-grid">
-          <div class="contact-intro">
-            <p>No sales pitch. We'll have a 30-minute call, you tell us what's eating your time, and we'll tell you straight whether AI can fix it.</p>
-            <p class="contact-fallback">Or email: <a href="mailto:jordan@grafteruk.co.uk">jordan@grafteruk.co.uk</a></p>
-          </div>
-
-          <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
-            <input type="hidden" name="access_key" value="612f0ea2-5df6-4f01-9ba0-96e059f0728e">
-            <input type="hidden" name="subject" value="New GrafterUK enquiry">
-            <input type="hidden" name="from_name" value="GrafterUK Website">
-            <input type="checkbox" name="botcheck" class="hidden-honeypot" tabindex="-1" autocomplete="off">
-
-            <label>
-              Your name
-              <input type="text" name="name" required autocomplete="name">
-            </label>
-
-            <label>
-              Your business
-              <input type="text" name="business" required autocomplete="organization">
-            </label>
-
-            <label>
-              Your trade
-              <input type="text" name="trade" placeholder="plumber, electrician, etc." required>
-            </label>
-
-            <label>
-              What's eating your time?
-              <textarea name="message" rows="4" required></textarea>
-            </label>
-
-            <label>
-              Phone or email
-              <input type="text" name="contact" placeholder="whichever you prefer" required>
-            </label>
-
-            <button type="submit" class="btn-primary">Send <span aria-hidden="true">→</span></button>
-            <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
-          </form>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <div>&copy; <span id="year">2026</span> GrafterUK. AI growth tools for UK trade businesses.</div>
-      <div><a href="mailto:jordan@grafteruk.co.uk">jordan@grafteruk.co.uk</a> · Hertfordshire, UK-wide service</div>
     </div>
-  </footer>
+    <div class="honest">
+      <b>AI where it's useful — not everywhere.</b> Some problems need a better website or better follow-up, not a robot. Part of what you get from me is an honest answer about which is which.
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow-sm">How it works</div>
+    <h2 class="sec">It starts with your business, not my products</h2>
+    <div class="steps">
+      <div class="pstep"><div class="num">1</div><div class="pc"><h4>We talk for 30 minutes</h4><p>You tell me how the business works and what's holding it back — too few enquiries, too much admin, or both. I ask questions and listen. No sales pitch.</p></div></div>
+      <div class="pstep"><div class="num">2</div><div class="pc"><h4>I tell you straight what would help</h4><p>A short, honest plan: what I'd implement, what it would do for you, and what I wouldn't bother with. If AI isn't the answer to something, I'll say so.</p></div></div>
+      <div class="pstep"><div class="num">3</div><div class="pc"><h4>I build and implement it</h4><p>Configured for your business — your services, your tone, your way of working. You get a walkthrough and it goes live.</p></div></div>
+      <div class="pstep"><div class="num">4</div><div class="pc"><h4>I keep it running &amp; improving</h4><p>Updates, fixes and new pieces as the business grows. Something needs changing, you contact me directly and I sort it.</p></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow-sm">Why GrafterUK</div>
+    <h2 class="sec">Why work with me</h2>
+    <div class="why">
+      <div class="whycard">
+        <h3>Built with Claude</h3>
+        <p>The same class of AI used by some of the world's biggest companies — implemented for your small business. Not last year's tools.</p>
+      </div>
+      <div class="whycard">
+        <h3>I run my own businesses on this</h3>
+        <p>GrafterUK isn't theoretical. I run live lead-generation sites and AI systems in production every day. I test on my own businesses before I implement for yours.</p>
+      </div>
+      <div class="whycard">
+        <h3>You deal directly with me</h3>
+        <p>No account managers, no juniors, no hand-offs. The person who plans and builds your setup is the person who answers when you need something.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow-sm">The founder</div>
+    <h2 class="sec">About</h2>
+    <div class="about">
+      <p>GrafterUK is run by <span class="name">Jordan Scowen</span> — a UK founder building AI-powered businesses, from live lead-generation sites to custom tools for small companies.</p>
+      <p>The same pattern keeps coming back: small businesses doing brilliant work, but losing customers they never hear from and time they'll never get back to admin nobody enjoys. I implement the fix for both — more work in, less effort handling it.</p>
+      <p>Hertfordshire-based, working with businesses UK-wide.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact">
+      <div class="eyebrow-sm">Get in touch</div>
+      <h2 class="sec">Tell me what you need</h2>
+      <p class="intro">No sales pitch. Tell me a bit about the business and what's holding it back, and I'll tell you straight what would help — and what wouldn't.</p>
+      <form id="enquiry" method="POST" action="https://api.web3forms.com/submit" class="eform">
+        <input type="hidden" name="access_key" value="612f0ea2-5df6-4f01-9ba0-96e059f0728e">
+        <input type="hidden" name="subject" value="New GrafterUK enquiry">
+        <input type="checkbox" name="botcheck" class="hp" style="display:none;" tabindex="-1" autocomplete="off">
+        <div class="frow">
+          <input type="text" name="name" placeholder="Your name" required>
+          <input type="email" name="email" placeholder="Your email" required>
+        </div>
+        <input type="text" name="business" placeholder="Your business (what you do)">
+        <textarea name="message" rows="4" placeholder="What's holding the business back? (too few enquiries, too much admin, something specific...)" required></textarea>
+        <button type="submit" class="fsubmit">Send it over</button>
+        <p class="fstatus" id="fstatus"></p>
+      </form>
+      <p class="note">Or email directly: <a href="mailto:jordan@grafteruk.co.uk" style="color:var(--accent);text-decoration:none;font-weight:600;">jordan@grafteruk.co.uk</a></p>
+      <p class="note">Hertfordshire-based &middot; UK-wide service</p>
+    </div>
+  </section>
 
   <script>
-    (function () {
-      // Year stamp
-      var y = document.getElementById('year');
-      if (y) y.textContent = String(new Date().getFullYear());
-
-      // Form: AJAX submit so we stay on page and show inline status
-      var form = document.getElementById('contact-form');
-      var status = document.getElementById('form-status');
-      if (!form || !status) return;
-
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        // Honeypot — silently drop bot submissions
-        if (form.querySelector('[name="botcheck"]').checked) return;
-
-        status.className = 'form-status';
-        status.textContent = 'Sending…';
-
-        var data = new FormData(form);
-        var json = {};
-        data.forEach(function (v, k) { json[k] = v; });
-
-        fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(json)
-        })
-          .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, body: j }; }); })
-          .then(function (res) {
-            if (res.ok && res.body && res.body.success !== false) {
-              status.className = 'form-status success';
-              status.textContent = "Thanks. We'll be in touch within 24 hours.";
-              form.reset();
-            } else {
-              status.className = 'form-status error';
-              status.textContent = (res.body && res.body.message) || 'Something went wrong. Please email jordan@grafteruk.co.uk directly.';
-            }
-          })
-          .catch(function () {
-            status.className = 'form-status error';
-            status.textContent = 'Connection error. Please email jordan@grafteruk.co.uk directly.';
-          });
-      });
-    })();
+  document.getElementById('enquiry').addEventListener('submit', async function(e){
+    e.preventDefault();
+    var f = this, s = document.getElementById('fstatus'), btn = f.querySelector('.fsubmit');
+    btn.disabled = true; s.textContent = 'Sending...';
+    try {
+      var r = await fetch(f.action, {method:'POST', body:new FormData(f), headers:{'Accept':'application/json'}});
+      if (r.ok) { s.textContent = "Got it — I'll come back to you within one working day."; f.reset(); }
+      else { s.textContent = 'Something went wrong — please email jordan@grafteruk.co.uk instead.'; }
+    } catch(err) { s.textContent = 'Something went wrong — please email jordan@grafteruk.co.uk instead.'; }
+    btn.disabled = false;
+  });
   </script>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="logo">Grafter<span>UK</span></div>
+    <div class="legal">
+      GrafterUK Ltd &middot; Registered in England &amp; Wales, Company No. 17303977<br>
+      Registered office: 71–75 Shelton Street, Covent Garden, London, WC2H 9JQ<br>
+      jordan@grafteruk.co.uk &middot; Hertfordshire, UK-wide service
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
