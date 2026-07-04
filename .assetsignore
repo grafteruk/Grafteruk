@@ -1,4 +1,10 @@
+.git
+.wrangler
+.gitignore
+.assetsignore
 README.md
 wrangler.jsonc
-.gitignore
+node_modules
 index-old.html
+.dev.vars*
+.env*
